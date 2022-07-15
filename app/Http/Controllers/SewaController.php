@@ -77,7 +77,6 @@ class SewaController extends Controller
         $request->validate([
             'tgl_pinjam' => 'required',
             'tgl_kembali' => 'required',
-            'biaya' => 'required',
             'driver' => 'required|in:on,off'
         ]);
 

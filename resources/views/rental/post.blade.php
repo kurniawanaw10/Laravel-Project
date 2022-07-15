@@ -9,32 +9,32 @@
                 <div class="col-md-6 p-4">
                     <img src="{{ asset('storage/'.$mobil->foto_mobil) }}" class="img-fluid rounded" alt="...">
                     <div class="card-body mt-3">
-                        <h2 class="card-title mb-2">{{ $data->nama_mobil }}</h2>
+                        <h2 class="card-title mb-2">{{ $mobil->nama_mobil }}</h2>
                         <table class="table table-borderless">
                             <tr>
                                 <th>Transmisi</th>
                                 <td> : </td>
-                                <td>{{ $data->transmisi }}</td>
+                                <td>{{ $mobil->transmisi }}</td>
                             </tr>
                             <tr>
                                 <th>Kapasitas</th>
                                 <td> : </td>
-                                <td>{{ $data->seat_mobil }} Orang</td>
+                                <td>{{ $mobil->seat_mobil }} Orang</td>
                             </tr>
                             <tr>
                                 <th>Plat Nomor</th>
                                 <td> : </td>
-                                <td>{{ $data->plat_nomor }}</td>
+                                <td>{{ $mobil->plat_nomor }}</td>
                             </tr>
                             <tr>
                                 <th>Bahan Bakar</th>
                                 <td> : </td>
-                                <td>{{ $data->bahan_bakar }}</td>
+                                <td>{{ $mobil->bahan_bakar }}</td>
                             </tr>
                             <tr>
                                 <th>Harga Sewa</th>
                                 <td> : </td>
-                                <td>Rp. {{ $data->harga }}/Day</td>
+                                <td>Rp. {{ $mobil->harga }}/Day</td>
                             </tr>
                         </table>
                     </div>
@@ -43,11 +43,11 @@
                     <h4 class="mt-4 mb-3">Rental</h4>
                         <div class="form-group mb-3">
                             <label>Tanggal Sewa</label>
-                            <input class="form-control" type="date" name="tgl_pinjam" value="{{ $data->tgl_pinjam }}">
+                            <input class="form-control" type="date" name="tgl_pinjam" value="{{ $tgl_pinjam }}">
                         </div>
                         <div class="form-group mb-3">
                             <label>Tanggal Kembali</label>
-                            <input class="form-control" type="date" name="tgl_kembali" value="{{ $data->tgl_kembali }}">
+                            <input class="form-control" type="date" name="tgl_kembali" value="{{ $tgl_kembali }}">
                         </div>
                         <div class="form-group mb-3">
                             <label for="hari">Jumlah Hari</label>
