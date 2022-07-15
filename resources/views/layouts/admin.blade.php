@@ -55,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
-        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('dist/img/logoww.png') }}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Wira Wiri Solo</span>
         </a>
 
@@ -95,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/admin/datawisata" class="nav-link">
+                <a href="/admin/wisata" class="nav-link">
                 <i class="nav-icon fas fa-map-marked-alt"></i>
                 <p>Data Wisata</p>
                 </a>

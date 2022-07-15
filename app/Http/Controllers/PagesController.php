@@ -36,11 +36,6 @@ class PagesController extends Controller
         return view('admin.index');
     }
 
-    public function datawisata()
-    {
-        return view('admin.wisata.datawisata');
-    }
-
     public function laporan()
     {
         return view('admin.laporan');

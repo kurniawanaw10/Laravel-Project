@@ -47,10 +47,12 @@ class SewaController extends Controller
         $hari = ($tgl_kembali - $tgl_pinjam) / 86400;
 
         if ($request->driver == "on") {
-            $biaya = ($request->harga * $hari) + 100000;
+            $biaya = ($mobil->harga * $hari) + 100000;
         } else {
-            $biaya = $request->harga * $hari;
+            $biaya = $mobil->harga * $hari;
         }
+
+
 
         // dd($biaya);
         return view('rental.post', [
@@ -58,6 +60,7 @@ class SewaController extends Controller
             'tgl_pinjam'    => $request->tgl_pinjam,
             'tgl_kembali'   => $request->tgl_kembali,
             'driver'        => $request->driver == 'on' ? 'on' : 'off',
+            'pembayaran'    => $request->pembayaran,
             "hari"          => $hari,
             "biaya"         => $biaya,
             'mobil'         => $mobil,
@@ -77,7 +80,8 @@ class SewaController extends Controller
         $request->validate([
             'tgl_pinjam' => 'required',
             'tgl_kembali' => 'required',
-            'driver' => 'required|in:on,off'
+            'driver' => 'required|in:on,off',
+            'pembayaran' => 'required|in:Cash,M-banking,Other'
         ]);
 
         $str_tgl_kembali = strtotime($request->tgl_kembali);
@@ -87,15 +91,28 @@ class SewaController extends Controller
         $hari  = ($str_tgl_kembali - $str_tgl_pinjam) / 86400;
         $biaya = $request->driver == 'on' ? ($mobil->harga * $hari) + 100000 : $mobil->harga * $hari;
 
-        Transaksi::create([
-            'mobil_id' => $mobil->id,
-            'user_id' => auth()->user()->id,
-            'tgl_pinjam' => $request->tgl_pinjam,
-            'tgl_kembali' => $request->tgl_kembali,
-            'harga' => $biaya,
-        ]);
+        $checkTrans = Transaksi::where('mobil_id', $mobil->id)
+            ->whereBetween('tgl_pinjam', [$request->tgl_pinjam, $request->tgl_kembali])
+            ->orwhereBetween('tgl_kembali', [$request->tgl_pinjam, $request->tgl_kembali])
+            ->first();
 
-        return redirect()->route('rental');
+        if ($checkTrans) {
+            dd('SUDAH TERPINJAM');
+        } else {
+            Transaksi::create([
+                'mobil_id' => $mobil->id,
+                'mobil_nama' => $mobil->nama_mobil,
+                'mobil_nomor' => $mobil->plat_nomor,
+                'user_id' => auth()->user()->id,
+                'user_nama' => auth()->user()->nama_user,
+                'tgl_pinjam' => $request->tgl_pinjam,
+                'tgl_kembali' => $request->tgl_kembali,
+                'harga' => $biaya,
+                'pembayaran' => $request->pembayaran
+            ]);
+
+            return redirect()->route('rental');
+        }
     }
 
     /**

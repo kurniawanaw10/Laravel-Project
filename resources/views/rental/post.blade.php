@@ -4,6 +4,7 @@
     <form action="{{ route('sewa-store', $mobil->id) }}" method="POST" enctype="multipart/form-data" class="m-3">
         @csrf
         <input type="hidden" name="driver" value="{{ $driver }}">
+        <input type="hidden" name="pembayaran" value="{{ $pembayaran }}">
         <div class="card my-5" style="min-height: 540px;">
             <div class="row g-0">
                 <div class="col-md-6 p-4">
@@ -43,11 +44,11 @@
                     <h4 class="mt-4 mb-3">Rental</h4>
                         <div class="form-group mb-3">
                             <label>Tanggal Sewa</label>
-                            <input class="form-control" type="date" name="tgl_pinjam" value="{{ $tgl_pinjam }}">
+                            <input class="form-control" type="date" name="tgl_pinjam" value="{{ $tgl_pinjam }}" readonly>
                         </div>
                         <div class="form-group mb-3">
                             <label>Tanggal Kembali</label>
-                            <input class="form-control" type="date" name="tgl_kembali" value="{{ $tgl_kembali }}">
+                            <input class="form-control" type="date" name="tgl_kembali" value="{{ $tgl_kembali }}" readonly>
                         </div>
                         <div class="form-group mb-3">
                             <label for="hari">Jumlah Hari</label>

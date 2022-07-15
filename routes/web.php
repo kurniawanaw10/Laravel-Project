@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\WisataController;
 use App\Http\Controllers\DataMobilController;
 
 /*
@@ -29,7 +30,6 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/admin', [PagesController::class, 'admin'])->middleware('admin');
-Route::get('/admin/datawisata', [PagesController::class, 'datawisata']);
 Route::get('/admin/laporan', [PagesController::class, 'laporan']);
 
 //Function Mobil
@@ -38,11 +38,14 @@ Route::resource('/admin/mobil', DataMobilController::class)->middleware('admin')
 //Function User
 Route::resource('/admin/user', UserController::class)->middleware('admin');
 
+//Function Wisata
+Route::get('/admin/wisata', [WisataController::class, 'index'])->middleware('admin');
+
 // //Function Rental
 Route::get('/rental', [SewaController::class, 'index'])->name('rental');
-Route::get('/rental/{id}', [SewaController::class, 'create'])->name('sewa-create');
-Route::post('/rental/post', [SewaController::class, 'post'])->name('sewa-post');
-Route::post('/rental/store', [SewaController::class, 'store'])->name('sewa-store');
+Route::get('/rental/{mobil}', [SewaController::class, 'create'])->name('sewa-create');
+Route::get('/rental/post/{mobil}', [SewaController::class, 'post'])->name('sewa-post');
+Route::post('/rental/store/{mobil}', [SewaController::class, 'store'])->name('sewa-store');
 // Route::resource('/rental', SewaController::class)->except('index')->middleware('auth');
 // Route::get('/rental/create', RentalController::class)->middleware('auth');
 // Route::post('/rental/store', RentalController::class)->middleware('auth');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wisata;
 use Illuminate\Http\Request;
 
 class WisataController extends Controller
@@ -13,7 +14,10 @@ class WisataController extends Controller
      */
     public function index()
     {
-        //
+        $data_wisata = Wisata::all();
+        return view('admin.wisata.index')->with([
+            'datas' => $data_wisata
+        ]);
     }
 
     /**

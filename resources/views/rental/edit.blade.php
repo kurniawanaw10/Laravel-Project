@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content1')
-<form action="{{ route('sewa-post', $data->id) }}" method="POST" enctype="multipart/form-data" class="m-3">
+    <form action="{{ route('sewa-post', $data->id) }}" method="GET" enctype="multipart/form-data" class="m-3">
         <div class="card my-5" style="min-height: 540px;">
             <div class="row g-0">
                 <div class="col-md-6 p-4">
@@ -15,27 +15,27 @@
                             <tr>
                                 <th>Transmisi</th>
                                 <td> : </td>
-                                <td>{{ $data->transmisi }}</td> <input type="hidden" name="transmisi" value="{{ $data->transmisi }}">
+                                <td>{{ $data->transmisi }}</td>
                             </tr>
                             <tr>
                                 <th>Kapasitas</th>
                                 <td> : </td>
-                                <td>{{ $data->seat_mobil }} Orang</td> <input type="hidden" name="seat_mobil" value="{{ $data->seat_mobil }}">
+                                <td>{{ $data->seat_mobil }} Orang</td>
                             </tr>
                             <tr>
                                 <th>Plat Nomor</th>
                                 <td> : </td>
-                                <td>{{ $data->plat_nomor }}</td> <input type="hidden" name="plat_nomor" value="{{ $data->plat_nomor }}">
+                                <td>{{ $data->plat_nomor }}</td>
                             </tr>
                             <tr>
                                 <th>Bahan Bakar</th>
                                 <td> : </td>
-                                <td>{{ $data->bahan_bakar }}</td> <input type="hidden" name="bahan_bakar" value="{{ $data->bahan_bakar }}">
+                                <td>{{ $data->bahan_bakar }}</td>
                             </tr>
                             <tr>
                                 <th>Harga Sewa</th>
                                 <td> : </td>
-                                <td>Rp. {{ $data->harga }}/Day <input type="hidden" name="harga" value="{{ $data->harga }}"> </td>
+                                <td>Rp. {{ $data->harga }}/Day</td>
                             </tr>
                         </table>
                     </div>
@@ -75,8 +75,8 @@
                         </div>
                         <button type="submit" class="btn btn-success mt-2">Pesan</button>   
                         <button type="submit" class="btn btn-danger mt-2">Batal</button>
-                    </div>
                 </div>
             </div>
-        </form>
+        </div>
+</form>
 @endsection
