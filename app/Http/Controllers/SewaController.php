@@ -30,17 +30,15 @@ class SewaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(DataMobil $mobil)
     {
-        $datamobil = DataMobil::find($id);
-        // dd($datamobil);
         return view('rental.edit', [
             "title" => "Order Kendaraan",
-            "data" => $datamobil
+            "data" => $mobil
         ]);
     }
 
-    public function post(Request $request)
+    public function post(Request $request, DataMobil $mobil)
     {
         // dd($request->driver);
 
@@ -56,10 +54,13 @@ class SewaController extends Controller
 
         // dd($biaya);
         return view('rental.post', [
-            "title" => "Order Kendaraan",
-            "data" => $request,
-            "hari" => $hari,
-            "biaya" => $biaya,
+            "title"         => "Order Kendaraan",
+            'tgl_pinjam'    => $request->tgl_pinjam,
+            'tgl_kembali'   => $request->tgl_kembali,
+            'driver'        => $request->driver == 'on' ? 'on' : 'off',
+            "hari"          => $hari,
+            "biaya"         => $biaya,
+            'mobil'         => $mobil,
         ]);
     }
 
@@ -69,24 +70,30 @@ class SewaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, DataMobil $mobil)
     {
         // dd($request);
 
         $request->validate([
-            'id_mobil' => 'required|exists:data_mobil,id',
-            'id_user' => 'required|exists:users,id',
             'tgl_pinjam' => 'required',
             'tgl_kembali' => 'required',
-            'biaya' => 'required'
+            'biaya' => 'required',
+            'driver' => 'required|in:on,off'
         ]);
 
+        $str_tgl_kembali = strtotime($request->tgl_kembali);
+        $str_tgl_pinjam  = strtotime($request->tgl_pinjam);
+
+        // Hitung Biaya
+        $hari  = ($str_tgl_kembali - $str_tgl_pinjam) / 86400;
+        $biaya = $request->driver == 'on' ? ($mobil->harga * $hari) + 100000 : $mobil->harga * $hari;
+
         Transaksi::create([
-            'mobil_id' => $request->id_mobil,
-            'user_id' => $request->id_user,
+            'mobil_id' => $mobil->id,
+            'user_id' => auth()->user()->id,
             'tgl_pinjam' => $request->tgl_pinjam,
             'tgl_kembali' => $request->tgl_kembali,
-            'harga' => $request->biaya,
+            'harga' => $biaya,
         ]);
 
         return redirect()->route('rental');

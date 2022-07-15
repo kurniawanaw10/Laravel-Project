@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
 @section('content1')
+    <form action="{{ route('sewa-store', $mobil->id) }}" method="POST" enctype="multipart/form-data" class="m-3">
+        @csrf
+        <input type="hidden" name="driver" value="{{ $driver }}">
         <div class="card my-5" style="min-height: 540px;">
             <div class="row g-0">
                 <div class="col-md-6 p-4">
-                    <form action="{{ route('sewa-store') }}" method="POST" enctype="multipart/form-data" class="m-3">
-                        @csrf
-                        <input type="hidden" name="id_mobil" value="{{$data->id_mobil}}">
-                    <img src="{{ asset('storage/'.$data->foto_mobil) }}" class="img-fluid rounded" alt="...">
+                    <img src="{{ asset('storage/'.$mobil->foto_mobil) }}" class="img-fluid rounded" alt="...">
                     <div class="card-body mt-3">
                         <h2 class="card-title mb-2">{{ $data->nama_mobil }}</h2>
                         <table class="table table-borderless">
@@ -41,7 +41,6 @@
                 </div>
                 <div class="col-md-6 p-4">
                     <h4 class="mt-4 mb-3">Rental</h4>
-                    <form action="{{ route('sewa-store') }}" method="POST" enctype="multipart/form-data" class="m-3">
                         <div class="form-group mb-3">
                             <label>Tanggal Sewa</label>
                             <input class="form-control" type="date" name="tgl_pinjam" value="{{ $data->tgl_pinjam }}">

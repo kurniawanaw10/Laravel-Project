@@ -1,14 +1,13 @@
 @extends('layouts.main')
 
 @section('content1')
+<form action="{{ route('sewa-post', $data->id) }}" method="POST" enctype="multipart/form-data" class="m-3">
         <div class="card my-5" style="min-height: 540px;">
             <div class="row g-0">
                 <div class="col-md-6 p-4">
-                    <form action="{{ route('sewa-post') }}" method="POST" enctype="multipart/form-data" class="m-3">
                     @csrf
                     <img src="{{ asset('storage/'.$data->foto_mobil) }}" class="img-fluid rounded" alt="...">
                     <div class="card-body mt-3">
-                        <input type="hidden" name="id_mobil" value="{{ $data->id }}">
                         <input type="hidden" name="foto_mobil" value="{{ $data->foto_mobil }}">
                         <input type="hidden" name="nama_mobil" value="{{ $data->nama_mobil }}">
                         <h2 class="card-title mb-2">{{ $data->nama_mobil }}</h2>
@@ -43,7 +42,6 @@
                 </div>
                 <div class="col-md-6 p-4">
                     <h4 class="mt-4 mb-3">Silahkan Mengisi Form Dibawah Ini.</h4>
-                    <form action="{{ route('sewa-post') }}" method="POST" enctype="multipart/form-data" class="m-3">
                         @csrf
                         <div class="form-group mb-3">
                             <label>Tanggal Sewa</label>
@@ -77,8 +75,8 @@
                         </div>
                         <button type="submit" class="btn btn-success mt-2">Pesan</button>   
                         <button type="submit" class="btn btn-danger mt-2">Batal</button>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
 @endsection
