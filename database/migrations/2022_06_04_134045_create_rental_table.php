@@ -22,11 +22,7 @@ class CreateRentalTable extends Migration
             $table->string('invoice_no')->nullable()->default('text');
             $table->dateTime('tgl_pinjam')->nullable();
             $table->dateTime('tgl_kembali')->nullable();
-            $table->dateTime('tgl_dikembalikan')->nullable();
             $table->integer('harga')->unsigned()->nullable();
-            $table->integer('jumlah')->unsigned()->nullable();
-            $table->integer('denda')->unsigned()->nullable();
-            $table->string('status')->nullable()->default('text');
             $table->timestamps('');
         });
     }

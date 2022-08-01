@@ -17,7 +17,6 @@
                         <th>Kapasitas</th>
                         <th>Bahan Bakar</th>
                         <th>Harga</th>
-                        <th>Denda</th>
                         <th>Foto</th>
                         <th colspan="2">Aksi</th>
                     </tr>
@@ -31,18 +30,17 @@
                         <td>{{ $value->seat_mobil }} Orang</td>
                         <td>{{ $value->bahan_bakar }}</td>
                         <td>Rp. {{ $value->harga }}</td>
-                        <td>Rp. {{ $value->denda }}</td>
                         <td>
                             <div style="max-width: 140px; overflow:hidden;">
                                 <img src="{{ asset('storage/'.$value->foto_mobil) }}" alt="" class="img-fluid">
                             </div>
                         </td>
                         <td>
-                            <a href="{{ url('admin/mobil/'.$value->id.'/edit' ) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ url('admin/mobil/'.$value->id.'/edit' ) }}" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                             <form action="{{ url('admin/mobil/'.$value->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-danger" type="submit">Hapus</button>
+                                <button class="btn btn-danger" type="submit"><i class="far fa-trash-alt"></i></button>
                             </form>
                         </td>
                     </tr>

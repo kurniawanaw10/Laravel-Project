@@ -52,38 +52,23 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="hari">Jumlah Hari</label>
-                            <input type="text" name="hari" id="hari" value="{{ $hari }}" readonly>
+                            <input type="text" id="hari" value="{{ $hari }}" disabled>
+                            <input type="hidden" name="hari" id="hari" value="{{ $hari }}">
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="biaya">Total Biaya</label>
-                            <input type="text" name="biaya" id="biaya" value="{{ $biaya }}" readonly>
+                            <input type="text" id="biaya" value="{{ $biaya }}" disabled>
+                            <input type="hidden" name="biaya" id="biaya" value="{{ $biaya }}">
                         </div>
-                        {{-- <div class="form-group mb-3">
-                            <label>Metode Pembayaran : </label>
-                            &nbsp;&nbsp;
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="pembayaran" id="Cash" value="Cash">
-                                <label class="form-check-label" for="Cash">Cash</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="pembayaran" id="M-banking" value="M-banking">
-                                <label class="form-check-label" for="M-banking">M-Banking</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="pembayaran" id="Other" value="Other">
-                                <label class="form-check-label" for="Other">Other</label>
-                            </div>
-                        </div>
-                        <div class="form-group mb-3">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">Include Driver</label>
-                            </div>
-                        </div> --}}
-                        <button type="submit" class="btn btn-success mt-2">Pesan</button>   
-                        <button type="submit" class="btn btn-danger mt-2">Batal</button>
+                        <button type="submit" onclick="konfirmasi()" class="btn btn-success mt-2">Pesan</button>   
+                        <input class="btn btn-danger mt-2" type="button" value="Batal" onclick="window.history.back()" /> 
                     </form>
+                    <script>
+                        function konfirmasi(){
+                            alert("Anda akan melakukan pemesanan tekan 'OK' jika setuju!");
+                        }
+                    </script>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\DataMobilController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +23,17 @@ use App\Http\Controllers\DataMobilController;
 
 //Pages
 Route::get('/', [PagesController::class, 'home']);
-Route::get('/wisata', [PagesController::class, 'wisata']);
-Route::get('/ulasan', [PagesController::class, 'ulasan']);
+Route::get('/wisata', [WisataController::class, 'post']);
 Route::get('/register', [RegisterController::class, 'regist'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/admin', [PagesController::class, 'admin'])->middleware('admin');
-Route::get('/admin/laporan', [PagesController::class, 'laporan']);
+Route::get('/admin', [PagesController::class, 'admin'])->middleware('admin');
+
+//Funtion Laporan
+Route::resource('/admin/laporan', LaporanController::class)->middleware('admin');
 
 //Function Mobil
 Route::resource('/admin/mobil', DataMobilController::class)->middleware('admin');
@@ -39,15 +42,13 @@ Route::resource('/admin/mobil', DataMobilController::class)->middleware('admin')
 Route::resource('/admin/user', UserController::class)->middleware('admin');
 
 //Function Wisata
-Route::get('/admin/wisata', [WisataController::class, 'index'])->middleware('admin');
+Route::resource('/admin/wisata', WisataController::class)->middleware('admin');;
 
 // //Function Rental
 Route::get('/rental', [SewaController::class, 'index'])->name('rental');
-Route::get('/rental/{mobil}', [SewaController::class, 'create'])->name('sewa-create');
-Route::get('/rental/post/{mobil}', [SewaController::class, 'post'])->name('sewa-post');
-Route::post('/rental/store/{mobil}', [SewaController::class, 'store'])->name('sewa-store');
+Route::get('/rental/{mobil}', [SewaController::class, 'create'])->name('sewa-create')->middleware('auth');
+Route::get('/rental/post/{mobil}', [SewaController::class, 'post'])->name('sewa-post')->middleware('auth');
+Route::post('/rental/store/{mobil}', [SewaController::class, 'store'])->name('sewa-store')->middleware('auth');
 // Route::resource('/rental', SewaController::class)->except('index')->middleware('auth');
 // Route::get('/rental/create', RentalController::class)->middleware('auth');
 // Route::post('/rental/store', RentalController::class)->middleware('auth');
-// Route::get('/rental/create', RentalController::class)->middleware('auth');
-// Route::get('/rental/create', RentalController::class)->middleware('auth');

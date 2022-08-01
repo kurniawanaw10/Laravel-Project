@@ -19,7 +19,7 @@ class PagesController extends Controller
 
     public function wisata()
     {
-        return view('pages.wisata', [
+        return view('admin.wisata.post', [
             "title" => "Wisata"
         ]);
     }
@@ -34,10 +34,5 @@ class PagesController extends Controller
     public function admin()
     {
         return view('admin.index');
-    }
-
-    public function laporan()
-    {
-        return view('admin.laporan');
     }
 }

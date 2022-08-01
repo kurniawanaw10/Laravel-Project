@@ -50,7 +50,6 @@ class DataMobilController extends Controller
             'transmisi' => ['required'],
             'bahan_bakar' => ['required'],
             'harga' => ['required'],
-            'denda' => ['required'],
             'foto_mobil' => ['image', 'file', 'max:3072'],
         ];
 
@@ -110,7 +109,6 @@ class DataMobilController extends Controller
             'transmisi' => ['required'],
             'bahan_bakar' => ['required'],
             'harga' => ['required'],
-            'denda' => ['required'],
             'foto_mobil' => ['image', 'file', 'max:3072']
         ];
 

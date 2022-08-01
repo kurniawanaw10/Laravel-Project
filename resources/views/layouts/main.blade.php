@@ -14,13 +14,14 @@
 
     <!-- Date picker -->
     
+    
     <!-- My Style CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
     <title>Wira Wiri Solo | {{ $title }}</title>
 </head>
 
-<body style="background-color: #C2DED1">
+<body style="background-color: #F9F9F9">
 
     @include('partials.navbar')
 
@@ -38,14 +39,6 @@
         </div>
     </div>
 
-    
-
-    <!-- Optional JavaScript; choose one of the two! -->
-    <script>
-        $(function(){
-            $('#datepicker').datepicker();
-        }
-    </script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

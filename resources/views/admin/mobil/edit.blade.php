@@ -57,8 +57,8 @@
                         </div>
                         <div class="col-4">
                             <label for="inputHarga" class="form-label">Harga Sewa</label>
-                            <input type="text" class="form-control @error('harga_sewa') is-invalid @enderror" id="inputHarga" name="harga_sewa" value="{{ $model->harga_sewa }}">
-                            @error('harga_sewa')
+                            <input type="text" class="form-control @error('harga') is-invalid @enderror" id="inputHarga" name="harga" value="{{ $model->harga }}">
+                            @error('harga')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-4">
                             <label for="inputBahanbakar" class="form-label">Bahan Bakar</label>
-                            <input type="text" class="form-control @error('harga_sewa') is-invalid @enderror" id="inputBahanbakar" name="bahan_bakar" value="{{ $model->bahan_bakar }}">
+                            <input type="text" class="form-control @error('bahan_bakar') is-invalid @enderror" id="inputBahanbakar" name="bahan_bakar" value="{{ $model->bahan_bakar }}">
                             @error('bahan_bakar')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -85,12 +85,14 @@
                             @enderror
                         </div>
                         <div class="col-6">
-                            <label for="inputFoto">Foto Mobil</label>
-                            @if ($model->foto_mobil)
-                                <img src="/img/{{ $model->foto_mobil }}" alt="">
-                            @endif
-                            <input type="file" name="foto_mobil" class="form-control-file" id="inputFoto">
+                            <label for="foto_mobil">Foto Mobil</label>
+                            <input type="file" name="foto_mobil" class="form-control-file @error('foto') is-invalid @enderror" id="foto_mobil">
                             <input type="hidden" name="foto_lama" class="form-control-file" id="foto_lama" value="{{ $model->foto_mobil }}">
+                            @error('foto_mobil')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-info mt-3">Simpan</button>    

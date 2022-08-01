@@ -44,7 +44,7 @@ class SewaController extends Controller
 
         $tgl_pinjam = strtotime($request->tgl_pinjam);
         $tgl_kembali = strtotime($request->tgl_kembali);
-        $hari = ($tgl_kembali - $tgl_pinjam) / 86400;
+        $hari = (($tgl_kembali - $tgl_pinjam) + 86400) / 86400;
 
         if ($request->driver == "on") {
             $biaya = ($mobil->harga * $hari) + 100000;
@@ -54,7 +54,7 @@ class SewaController extends Controller
 
 
 
-        // dd($biaya);
+        // dd($request);
         return view('rental.post', [
             "title"         => "Order Kendaraan",
             'tgl_pinjam'    => $request->tgl_pinjam,
@@ -88,7 +88,7 @@ class SewaController extends Controller
         $str_tgl_pinjam  = strtotime($request->tgl_pinjam);
 
         // Hitung Biaya
-        $hari  = ($str_tgl_kembali - $str_tgl_pinjam) / 86400;
+        $hari  = (($str_tgl_kembali - $str_tgl_pinjam) + 86400) / 86400;
         $biaya = $request->driver == 'on' ? ($mobil->harga * $hari) + 100000 : $mobil->harga * $hari;
 
         $checkTrans = Transaksi::where('mobil_id', $mobil->id)
@@ -105,6 +105,8 @@ class SewaController extends Controller
                 'mobil_nomor' => $mobil->plat_nomor,
                 'user_id' => auth()->user()->id,
                 'user_nama' => auth()->user()->nama_user,
+                'user_nomor' => auth()->user()->nomor_hp,
+                'user_nik' => auth()->user()->nik,
                 'tgl_pinjam' => $request->tgl_pinjam,
                 'tgl_kembali' => $request->tgl_kembali,
                 'harga' => $biaya,

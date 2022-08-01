@@ -1,7 +1,9 @@
-<header class="p-3 bg-dark text-white">
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">Wira Wiri Solo</a>
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('dist/img/logoww.png') }}" width="52" height="30" alt="">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -15,9 +17,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('wisata') ? 'active' : '' }}" href="/wisata">Wisata</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('ulasan') ? 'active' : '' }}" href="/ulasan">Ulasan</a>
                     </li>
                 </ul>
                 @auth
@@ -51,4 +50,3 @@
             </div>
         </div>
     </nav>
-</header>

@@ -24,7 +24,6 @@ class CreateDataMobil extends Migration
             $table->string('status')->nullable()->default('tersedia');
             $table->string('foto_mobil')->nullable();
             $table->integer('harga')->unsigned()->nullable();
-            $table->integer('denda')->unsigned()->nullable();
             $table->timestamps();
         });
     }

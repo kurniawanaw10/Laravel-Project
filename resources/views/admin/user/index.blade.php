@@ -7,7 +7,7 @@
             <div class="card-body">
                 <h4 class="card-tittle">Data User</h4>
                 <a href="/admin/user/create" class="btn btn-info mt-2 ml-3">Tambah Data User</a>
-                <table class="table mt-3 text-center">
+                <table class="table table-responsive-lg mt-3 text-center">
                     <tr>
                         <th>#</th>
                         <th>Nama User</th>
@@ -28,11 +28,11 @@
                         <td>{{ $value->email }}</td>
                         <td><img src="{{ asset('storage/'.$value->foto_diri) }}" alt="" class="img-thumbnail"></td>
                         <td>
-                            <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-warning">Edit</a>
+                            <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                             <form action="/admin/user/{{ $value->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin?')" type="submit">Hapus</button>
+                                <button class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin?')" type="submit"><i class="far fa-trash-alt"></i></button>
                             </form>
                         </td>
                     </tr>

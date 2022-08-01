@@ -2,61 +2,42 @@
 
 @section('konten')
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col">
         <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-
-            <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's
-            content.
-            </p>
-
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-        </div>
-        </div>
-
-        <div class="card card-primary card-outline">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-
-            <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's
-            content.
-            </p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-        </div>
-        </div><!-- /.card -->
-    </div>
-    <!-- /.col-md-6 -->
-    <div class="col-lg-6">
-        <div class="card">
-        <div class="card-header">
-            <h5 class="m-0">Featured</h5>
-        </div>
-        <div class="card-body">
-            <h6 class="card-title">Special title treatment</h6>
-
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        </div>
-
-        <div class="card card-primary card-outline">
-        <div class="card-header">
-            <h5 class="m-0">Featured</h5>
-        </div>
-        <div class="card-body">
-            <h6 class="card-title">Special title treatment</h6>
-
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+            <div class="card-body">
+                <h4 class="card-tittle">Data Wisata</h4>
+                <a href="{{ url('admin/wisata/create') }}" class="btn btn-info mt-2 ml-3">Tambah Wisata</a>
+                <table class="table table-responsive-lg mt-3 text-center">
+                    <tr>
+                        <th>#</th>
+                        <th>Nama Wisata</th>
+                        <th>Deskripsi</th>
+                        <th>Foto</th>
+                        <th>Aksi</th>
+                    </tr>
+                    @foreach ($wisatas as $value)
+                    <tr style="width: 100%">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $value->judul }}</td>
+                        <td style="width:60%">{{ strip_tags($value->deskripsi) }}</td>
+                        <td>
+                            <div style="max-width: 140px; overflow:hidden;">
+                                <img src="{{ asset('storage/'.$value->foto) }}" alt="" class="img-fluid">
+                            </div>
+                        </td>
+                        <td style="width:10%">
+                            <a href="/admin/wisata/{{ $value->id }}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                            <form action="/admin/wisata/{{ $value->id }}" method="POST" class="d-inline">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button class="btn btn-danger" type="submit"><i class="far fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </table>
+            </div>
         </div>
     </div>
-    <!-- /.col-md-6 -->
-    </div>
-    <!-- /.row -->
+</div>
 @endsection

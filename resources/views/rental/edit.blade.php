@@ -55,7 +55,7 @@
                             <label>Metode Pembayaran : </label>
                             &nbsp;&nbsp;
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="pembayaran" id="Cash" value="Cash">
+                                <input class="form-check-input" type="radio" name="pembayaran" id="Cash" value="Cash" required>
                                 <label class="form-check-label" for="Cash">Cash</label>
                             </div>
                             <div class="form-check form-check-inline">
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success mt-2">Pesan</button>   
-                        <button type="submit" class="btn btn-danger mt-2">Batal</button>
+                        <button type="reset" class="btn btn-danger mt-2">Reset</button>
                 </div>
             </div>
         </div>

@@ -15,6 +15,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
+    <!-- Text Editor -->
+    <link rel="stylesheet" type="text/css" href="/css/trix.css">
+    <script type="text/javascript" src="/js/trix.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"]{
+            display:none;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -34,9 +43,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="/wisata" class="nav-link">Wisata</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="/ulasan" class="nav-link">Ulasan</a>
             </li>
         </ul>
 
