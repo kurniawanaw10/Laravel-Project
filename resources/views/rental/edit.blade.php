@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
 @section('content1')
+<div class="py-5">
     <form action="{{ route('sewa-post', $data->id) }}" method="GET" enctype="multipart/form-data" class="m-3">
-        <div class="card my-5" style="min-height: 540px;">
+        <div class="card" style="min-height: 540px;">
             <div class="row g-0">
                 <div class="col-md-6 p-4">
                     @csrf
@@ -78,5 +79,6 @@
                 </div>
             </div>
         </div>
-</form>
+    </form>
+</div>
 @endsection

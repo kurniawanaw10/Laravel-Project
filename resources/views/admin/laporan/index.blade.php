@@ -28,11 +28,11 @@
                         <td>{{ date('d-m-Y', strtotime($value->tgl_kembali)) }}</td>
                         <td>Rp. {{ $value->harga }}</td>
                         <td style="width:10%">
-                            <a href="/admin/laporan/{{ $value->id }}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="/admin/laporan/{{ $value->id }}/edit" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                             <form action="/admin/laporan/{{ $value->id }}" method="POST" class="d-inline">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-danger" type="submit"><i class="far fa-trash-alt"></i></button>
+                                <button class="btn btn-danger btn-sm" type="submit"><i class="far fa-trash-alt"></i></button>
                             </form>
                         </td>
                     </tr>

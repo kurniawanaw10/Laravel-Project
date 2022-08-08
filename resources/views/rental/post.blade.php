@@ -1,11 +1,12 @@
 @extends('layouts.main')
 
 @section('content1')
+<div class="py-5">
     <form action="{{ route('sewa-store', $mobil->id) }}" method="POST" enctype="multipart/form-data" class="m-3">
         @csrf
         <input type="hidden" name="driver" value="{{ $driver }}">
         <input type="hidden" name="pembayaran" value="{{ $pembayaran }}">
-        <div class="card my-5" style="min-height: 540px;">
+        <div class="card" style="min-height: 540px;">
             <div class="row g-0">
                 <div class="col-md-6 p-4">
                     <img src="{{ asset('storage/'.$mobil->foto_mobil) }}" class="img-fluid rounded" alt="...">
@@ -63,13 +64,14 @@
                         </div>
                         <button type="submit" onclick="konfirmasi()" class="btn btn-success mt-2">Pesan</button>   
                         <input class="btn btn-danger mt-2" type="button" value="Batal" onclick="window.history.back()" /> 
-                    </form>
-                    <script>
-                        function konfirmasi(){
-                            alert("Anda akan melakukan pemesanan tekan 'OK' jika setuju!");
-                        }
-                    </script>
                 </div>
             </div>
         </div>
+    </form>
+    <script>
+        function konfirmasi(){
+            alert("Anda akan melakukan pemesanan tekan 'OK' jika setuju!");
+        }
+    </script>
+</div>
 @endsection

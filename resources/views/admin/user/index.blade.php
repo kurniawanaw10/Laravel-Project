@@ -28,11 +28,11 @@
                         <td>{{ $value->email }}</td>
                         <td><img src="{{ asset('storage/'.$value->foto_diri) }}" alt="" class="img-thumbnail"></td>
                         <td>
-                            <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                             <form action="/admin/user/{{ $value->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin?')" type="submit"><i class="far fa-trash-alt"></i></button>
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin?')" type="submit"><i class="far fa-trash-alt"></i></button>
                             </form>
                         </td>
                     </tr>

@@ -61,9 +61,13 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-8">
-                            <label for="formFile" class="form-label">Foto</label>
-                            <br>
-                            <input class="form-control" type="file" id="formFile" name="foto_diri">
+                            <label for="foto_diri">Foto</label>
+                            <input type="file" class="form-control-file @error('foto_diri') is-invalid @enderror" id="foto_diri" name="foto_diri">
+                            @error('foto_diri')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-info mt-3">Simpan</button>    

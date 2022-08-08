@@ -36,11 +36,9 @@ class WisataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Wisata $wisata)
+    public function create()
     {
-        return view('admin.wisata.create', [
-            'tour' => $wisata
-        ]);
+        return view('admin.wisata.create');
     }
 
     /**

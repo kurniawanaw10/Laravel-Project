@@ -23,14 +23,15 @@ use App\Http\Controllers\LaporanController;
 
 //Pages
 Route::get('/', [PagesController::class, 'home']);
-Route::get('/wisata', [WisataController::class, 'post']);
+
+Route::get('/admin', [PagesController::class, 'admin'])->middleware('admin');
+
+//Authentication
 Route::get('/register', [RegisterController::class, 'regist'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('/admin', [PagesController::class, 'admin'])->middleware('admin');
-Route::get('/admin', [PagesController::class, 'admin'])->middleware('admin');
 
 //Funtion Laporan
 Route::resource('/admin/laporan', LaporanController::class)->middleware('admin');
@@ -42,7 +43,11 @@ Route::resource('/admin/mobil', DataMobilController::class)->middleware('admin')
 Route::resource('/admin/user', UserController::class)->middleware('admin');
 
 //Function Wisata
-Route::resource('/admin/wisata', WisataController::class)->middleware('admin');;
+Route::get('/wisata', [WisataController::class, 'post']);
+Route::get('/admin/wisata', [WisataController::class, 'index'])->middleware('admin');
+Route::get('/admin/wisata/create', [WisataController::class, 'create'])->middleware('admin');
+Route::get('/admin/wisata/{wisatum}', [WisataController::class, 'show'])->middleware('auth');
+// Route::get('/admin/wisata/create', [WisataController::class, 'create'])->middleware('admin');
 
 // //Function Rental
 Route::get('/rental', [SewaController::class, 'index'])->name('rental');

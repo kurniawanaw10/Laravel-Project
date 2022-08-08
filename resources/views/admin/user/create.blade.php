@@ -70,8 +70,8 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-8">
-                            <label class="mb-2" for="image">Foto Diri</label>
-                            <input type="file" class="form-control-file @error('foto_diri') is-invalid @enderror" id="image" name="foto_diri">
+                            <label class="mb-2" for="foto_diri">Foto Diri</label>
+                            <input type="file" class="form-control-file @error('foto_diri') is-invalid @enderror" id="foto_diri" name="foto_diri">
                             @error('foto_diri')
                                 <div class="invalid-feedback">
                                     {{ $message }}

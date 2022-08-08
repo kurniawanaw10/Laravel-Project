@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataMobil;
+use App\Models\Wisata;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
     public function home()
     {
-        $data = DataMobil::all();
         return view('pages.home', [
-            "title" => "Beranda"
-        ])->with([
-            'data' => $data
+            "title" => "Beranda",
+            'wisatas' => Wisata::latest()->get()
         ]);
+    }
+
+    public function admin()
+    {
+        return view('admin.dashboard');
     }
 
     public function wisata()
@@ -22,17 +26,5 @@ class PagesController extends Controller
         return view('admin.wisata.post', [
             "title" => "Wisata"
         ]);
-    }
-
-    public function ulasan()
-    {
-        return view('pages.contact', [
-            "title" => "Ulasan"
-        ]);
-    }
-
-    public function admin()
-    {
-        return view('admin.index');
     }
 }
