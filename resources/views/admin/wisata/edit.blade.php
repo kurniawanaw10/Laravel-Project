@@ -19,6 +19,16 @@
                         @enderror
                     </div>
                     <div class="form-group mt-3">
+                        <label for="wisata">Lokasi</label>
+                        <input type="text" class="form-control @error('lokasi') is-invalid @enderror" id="wisata" name="lokasi" value="{{ $ubah->lokasi }}">
+                        <small>*Salin Link "Embed a Maps" pada Google Maps</small>
+                        @error('lokasi')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-3">
                         <label for="deskripsi">Deskripsi</label>
                         <input id="deskripsi" type="hidden" name="deskripsi" value="{{ $ubah->deskripsi }}">
                         <trix-editor input="deskripsi"></trix-editor>

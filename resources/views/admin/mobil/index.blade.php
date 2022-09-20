@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-tittle">Data Mobil</h4>
-                <a href="{{ url('admin/mobil/create') }}" class="btn btn-info mt-2 ml-3">Tambah Data Mobil</a>
+                <a href="{{ url('admin/mobil/create') }}" class="btn btn-sm btn-info mt-2 ml-3">Tambah Data Mobil</a>
                 <table class="table table-responsive-lg mt-3 text-center">
                     <tr>
                         <th>#</th>
@@ -29,7 +29,7 @@
                         <td>{{ $value->transmisi }}</td>
                         <td>{{ $value->seat_mobil }} Orang</td>
                         <td>{{ $value->bahan_bakar }}</td>
-                        <td>Rp. {{ $value->harga }}</td>
+                        <td>@currency($value->harga)</td>
                         <td>
                             <div style="max-width: 140px; overflow:hidden;">
                                 <img src="{{ asset('storage/'.$value->foto_mobil) }}" alt="" class="img-fluid">

@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -43,16 +43,8 @@
     <!-- FOOTER -->
     <div id="footer">
         <footer class="container footer">
-            <style>
-                .footer a:visited{
-                    color: #F8F7F3
-                }
-                .footer a:hover{
-                    color: #D9D8D4
-                }
-            </style>
             <p class="float-end"><a href="#" class="text-decoration-none">Back to top</a></p>
-            <p style="color: #F8F7F3">&copy; 2022 Kurniawan Andika W. &nbsp; &middot; <a href="#" class="text-decoration-none">Privacy</a> &middot; <a href="#" class="text-decoration-none">Terms</a></p>
+            <p style="color: #F8F7F3">&copy;  2022 <a href="https://www.linkedin.com/in/kurniawan-andika-wijaya-454a10213/" target="_blank" class="text-decoration-none">Kurniawan Andika W</a> &nbsp;&nbsp;&middot; <a href="https://wa.me/6281225671933" target="_blank" class="text-decoration-none">Contact</a> &nbsp; &middot; <a href="https://goo.gl/maps/iNpajmxcCms8aSSY8" target="_blank" class="text-decoration-none">Location</a></p>
         </footer>
     </div>
 </body>

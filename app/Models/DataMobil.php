@@ -13,8 +13,8 @@ class DataMobil extends Model
     protected $table = 'data_mobil';
     protected $guarded = ['id'];
 
-    public function transaksi()
-    {
-        return $this->hasMany(Transaksi::class, 'mobil_id', 'id');
-    }
+    // public function transaksi()
+    // {
+    //     return $this->hasMany(Transaksi::class, 'mobil_id', 'id');
+    // }
 }

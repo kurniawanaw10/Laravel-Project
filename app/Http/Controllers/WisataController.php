@@ -51,6 +51,7 @@ class WisataController extends Controller
     {
         $validatedData = $request->validate([
             'judul' => ['required', 'max:255'],
+            'lokasi' => ['required'],
             'deskripsi' => ['required'],
             'foto' => ['image', 'file', 'max:3072'],
         ]);
@@ -104,6 +105,7 @@ class WisataController extends Controller
     {
         $validatedData = $request->validate([
             'judul' => ['required', 'max:255'],
+            'lokasi' => ['required'],
             'deskripsi' => ['required'],
             'foto' => ['image', 'file', 'max:3072']
         ]);

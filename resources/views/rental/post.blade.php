@@ -36,42 +36,74 @@
                             <tr>
                                 <th>Harga Sewa</th>
                                 <td> : </td>
-                                <td>Rp. {{ $mobil->harga }}/Day</td>
+                                <td>@currency($mobil->harga)/Day</td>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <div class="col-md-6 p-4">
-                    <h4 class="mt-4 mb-3">Rental</h4>
-                        <div class="form-group mb-3">
-                            <label>Tanggal Sewa</label>
-                            <input class="form-control" type="date" name="tgl_pinjam" value="{{ $tgl_pinjam }}" readonly>
+                    <h4 class="p-3 text-center">Verifikasi Data</h4>
+                    <div class="row my-3 d-flex justify-content-center">
+                        <div class="col-md-5">
+                            <div class="form-group mb-3">
+                                <label for="tanggal1">Tanggal Sewa</label>
+                                <input class="form-control" type="text" id="tanggal1" value="{{ date('D, d F Y', strtotime($tgl_pinjam))  }}" disabled>
+                                <input type="hidden" name="tgl_pinjam" id="tanggal1" value="{{ $tgl_pinjam }}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="hari">Jumlah Hari</label>
+                                <input class="form-control" type="text" id="hari" value="{{ $hari }} Hari" disabled>
+                                <input type="hidden" name="hari" id="hari" value="{{ $hari }}">
+                            </div>
                         </div>
-                        <div class="form-group mb-3">
-                            <label>Tanggal Kembali</label>
-                            <input class="form-control" type="date" name="tgl_kembali" value="{{ $tgl_kembali }}" readonly>
+                        <div class="col-md-5">
+                            <div class="form-group mb-3">
+                                <label for="tanggal2">Tanggal Kembali</label>
+                                <input class="form-control" type="text" id="tanggal2" name="tgl_kembali" value="{{ date('D, d F Y', strtotime($tgl_kembali)) }}" disabled>
+                                <input type="hidden" name="tgl_kembali" id="tanggal2" value="{{ $tgl_kembali }}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="biaya">Total Biaya</label>
+                                <input class="form-control" type="text" id="biaya" value="@currency($biaya)" disabled>
+                                <input type="hidden" name="biaya" id="biaya" value="{{ $biaya }}">
+                            </div>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="hari">Jumlah Hari</label>
-                            <input type="text" id="hari" value="{{ $hari }}" disabled>
-                            <input type="hidden" name="hari" id="hari" value="{{ $hari }}">
+                        <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#myModal">Pesan</button>
+                        <input class="btn btn-danger mt-2" type="button" value="Batal" onclick="window.history.back()" />
+                
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content" style="background-color: #212529">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title text-white">Silahkan Melakukan Pembayaran</h4>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="modal-body text-center" style="background-color: #F8F7F3">
+                                        <h6>Nomor Rekening :</h6>
+                                        BCA a.n. Ryan Aninditya Manggala
+                                        <br>
+                                        <h6>7850728296</h6>
+                                        <br>
+                                        Konfirmasi Pemesanan :
+                                        <br>
+                                        <i class="fa fa-phone" aria-hidden="true"></i> : 0812 2567 1933 – 085 725 6666 81
+                                        <br>
+                                        <i class="fa fa-envelope" aria-hidden="true"></i> : wirawirisolo@gmail.com
+                                    </div>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="sumbit" class="btn btn-outline-warning">Simpan</button>
+                                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Batal</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="biaya">Total Biaya</label>
-                            <input type="text" id="biaya" value="{{ $biaya }}" disabled>
-                            <input type="hidden" name="biaya" id="biaya" value="{{ $biaya }}">
-                        </div>
-                        <button type="submit" onclick="konfirmasi()" class="btn btn-success mt-2">Pesan</button>   
-                        <input class="btn btn-danger mt-2" type="button" value="Batal" onclick="window.history.back()" /> 
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-    <script>
-        function konfirmasi(){
-            alert("Anda akan melakukan pemesanan tekan 'OK' jika setuju!");
-        }
-    </script>
 </div>
 @endsection

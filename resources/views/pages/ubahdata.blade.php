@@ -1,12 +1,11 @@
-@extends('layouts.admin')
-
-@section('konten')
-<div class="row">
-    <div class="col">
-        <div class="card">
+@extends('layouts.main')
+@section('content')
+<div class="row pt-4 justify-content-center">
+    <div class="col-lg-8">
+        <div class="card mt-5">
             <div class="card-body">
-                <h4 class="card-tittle">Ubah Data User</h4>
-                <form action="/admin/user/{{ $data->id }}" method="POST" enctype="multipart/form-data" class="m-3">
+                <h2 class="text-bold text-black text-center mb-4 mt-2">Ubah Data Diri</h2>
+                <form action="{{ route('update-data', ["id" => $data->id]) }}" method="POST" enctype="multipart/form-data" class="m-3">
                     @method('put')
                     @csrf
                     <div class="row mb-3">
@@ -31,9 +30,9 @@
                         </div>
                         <div class="col-3">
                             <label for="inputJaminan" class="form-label">Jaminan</label>
-                            <select id="inputJaminan" name="jaminan" class="form-control  @error('jaminan') is-invalid @enderror">
-                                <option selected>Pilih Jaminan</option>
-                                <option value="KTP">Kartu Tanda Penduduk</option>
+                            <select id="inputJaminan" name="jaminan" class="form-select  @error('jaminan') is-invalid @enderror">
+                                <option>Pilih Jaminan</option>
+                                <option value="KTP" selected>Kartu Tanda Penduduk</option>
                                 <option value="Kartu Keluarga">Kartu Keluarga</option>
                                 <option value="Kartu BPJS">Kartu BPJS</option>
                             </select>
@@ -64,7 +63,14 @@
                             @enderror
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info mt-3">Simpan</button>    
+                    <div class="text-center">
+                        <div class="d-inline p-2">
+                            <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                        </div>    
+                        <div class="d-inline p-2">
+                            <input class="btn btn-secondary mt-3" type="button" value="Kembali" onclick="window.history.back()" />
+                        </div>    
+                    </div>
                 </form>
             </div>
         </div>

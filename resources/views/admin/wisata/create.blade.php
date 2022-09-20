@@ -5,12 +5,22 @@
     <div class="card col-lg-8">
         <div class="card-body">
             <h4 class="card-tittle">Tambah Data Wisata</h4>
-            <form action="/admin/wisata" method="POST" enctype="multipart/form-data" class="m-3">
+            <form action="{{ route('wisata-store') }}" method="POST" enctype="multipart/form-data" class="m-3">
                 @csrf
                 <div class="form-group mt-3">
                     <label for="wisata">Nama Wisata</label>
                     <input type="text" class="form-control @error('judul') is-invalid @enderror" id="wisata" name="judul" value="{{ old('judul') }}">
                     @error('judul')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group mt-3">
+                    <label for="wisata">Lokasi</label>
+                    <input type="text" class="form-control @error('lokasi') is-invalid @enderror" id="wisata" name="lokasi" value="{{ old('lokasi') }}" placeholder="">
+                    <small>*Salin Link "Embed a Maps" pada Google Maps</small>
+                    @error('lokasi')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

@@ -44,6 +44,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="/wisata" class="nav-link">Wisata</a>
             </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/riwayat" class="nav-link">Riwayat</a>
+            </li>
         </ul>
 
         <ul class="navbar-nav ml-auto mr-2">
@@ -62,7 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
         <img src="{{ asset('dist/img/logoww.png') }}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Wira Wiri Solo</span>
+        <span class="brand-text">Wira Wiri Solo</span>
         </a>
 
         <!-- Sidebar -->

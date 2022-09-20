@@ -18,3 +18,17 @@
     border-radius: 0;
     margin-bottom: -1px;
 }
+
+.btn-dark:hover{
+    color: #abadaf;
+}
+
+.footer a:link{
+    color: #F8F7F3
+}
+.footer a:visited{
+    color: #F8F7F3
+}
+.footer a:hover{
+    color: #D9D8D4
+}

@@ -6,8 +6,8 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-tittle">Data Wisata</h4>
-                <a href="{{ url('admin/wisata/create') }}" class="btn btn-info mt-2 ml-3">Tambah Wisata</a>
-                <table class="table table-responsive-lg mt-3 text-center">
+                <a href="{{ url('admin/wisata/create') }}" class="btn btn-sm btn-info mt-2 ml-3">Tambah Wisata</a>
+                <table class="table table-responsive-lg mt-3 text-justify">
                     <tr>
                         <th>#</th>
                         <th>Nama Wisata</th>

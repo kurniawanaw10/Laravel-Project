@@ -20,16 +20,17 @@ class RegisterController extends Controller
     {
         $validatedData = $request->validate([
             'nama_user' => ['required', 'max:255', 'unique:users'],
+            'nama_lengkap' => ['required', 'max:255'],
             'alamat' => ['required', 'max:425'],
-            'nik' => ['required', 'numeric', 'min:16'],
             'nomor_hp' => ['required', 'numeric', 'min:11', 'unique:users'],
             'email' => ['required', 'email:dns', 'unique:users'],
-            'password' => ['required', 'min:8', 'max:255'],
+            'password' => ['required', 'min:8', 'max:255']
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::create($validatedData);
+
         return redirect('/login')->with('success', 'Registrasi Berhasil! Silahkan Login!');
     }
 }

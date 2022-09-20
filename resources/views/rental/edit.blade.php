@@ -2,6 +2,15 @@
 
 @section('content1')
 <div class="py-5">
+    {{-- @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif --}}
     <form action="{{ route('sewa-post', $data->id) }}" method="GET" enctype="multipart/form-data" class="m-3">
         <div class="card" style="min-height: 540px;">
             <div class="row g-0">
@@ -36,21 +45,30 @@
                             <tr>
                                 <th>Harga Sewa</th>
                                 <td> : </td>
-                                <td>Rp. {{ $data->harga }}/Day</td>
+                                <td>@currency($data->harga)/Day</td>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <div class="col-md-6 p-4">
                     <h4 class="mt-4 mb-3">Silahkan Mengisi Form Dibawah Ini.</h4>
-                        @csrf
                         <div class="form-group mb-3">
                             <label>Tanggal Sewa</label>
-                            <input class="form-control" type="date" name="tgl_pinjam" required autofocus>
+                            <input class="form-control @error('tgl_kembali') is_invalid @enderror" type="date" name="tgl_pinjam" id="txtDate" min="{{ date("Y-m-d") }}" required autofocus>
+                            @error('tgl_pinjam')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label>Tanggal Kembali</label>
-                            <input class="form-control" type="date" name="tgl_kembali" required autofocus>
+                            <input class="form-control @error('tgl_kembali') is-invalid @enderror" type="date" name="tgl_kembali" id="txtDate" min="{{ date("Y-m-d") }}" required autofocus>
+                            @error('tgl_kembali')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group mb-3">
                             <label>Metode Pembayaran : </label>
@@ -69,10 +87,13 @@
                             </div>
                         </div>
                         <div class="form-group mb-3">
+                            <label>Driver : </label>
+                            &nbsp;&nbsp;
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" name="driver" id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">Include Driver</label>
+                                <label class="form-check-label" for="driver">Incluce Driver</label>
+                                <input class="form-check-input" type="checkbox" role="switch" name="driver" id="driver">
                             </div>
+                            <small>*Tambah biaya Rp. 100.000/Day</small>
                         </div>
                         <button type="submit" class="btn btn-success mt-2">Pesan</button>   
                         <button type="reset" class="btn btn-danger mt-2">Reset</button>

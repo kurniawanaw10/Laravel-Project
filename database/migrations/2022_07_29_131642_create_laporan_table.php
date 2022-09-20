@@ -18,7 +18,6 @@ class CreateLaporanTable extends Migration
             $table->string('nama_user')->references('nama_user')->on('users');
             $table->string('nama_mobil')->references('nama_mobil')->on('data_mobil');
             $table->string('plat_nomor')->references('plat_nomor')->on('data_mobil');
-            $table->integer('lama_sewa');
             $table->dateTime('tgl_pinjam')->references('tgl_pinjam')->on('transaksi');
             $table->dateTime('tgl_kembali')->references('tgl_kembali')->on('transaksi');
             $table->integer('harga')->references('harga')->on('transaksi');

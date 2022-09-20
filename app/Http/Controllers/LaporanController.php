@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataMobil;
 use App\Models\Transaksi;
+use App\Models\Wisata;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LaporanController extends Controller
 {
@@ -14,10 +18,23 @@ class LaporanController extends Controller
      */
     public function index()
     {
+        $laporan = Transaksi::get();
         return view('admin.laporan.index', [
-            "title" => "Wisata",
-            'reports' => Transaksi::all()
+            "title" => "Laporan",
+            'reports' => $laporan
         ]);
+    }
+
+    public function print()
+    {
+        $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        return view('admin.laporan.receipt-all', [
+            'laporan' => Transaksi::all(),
+            'today' => $today
+        ]);
+        // ->with([
+        //     'today' => $today
+        // ])
     }
 
     /**
@@ -30,13 +47,23 @@ class LaporanController extends Controller
         //
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $reports = Transaksi::where('user_nama', 'like', "%" . $keyword . "%")
+            ->orwhere('mobil_nama', 'like', "%" . $keyword . "%")
+            ->orWhere('mobil_nomor', 'like', "%" . $keyword . "%")
+            ->get();
+        return view('admin.laporan.index', compact('reports'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -47,9 +74,12 @@ class LaporanController extends Controller
      * @param  \App\Models\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaksi $transaksi)
+    public function show($id)
     {
-        //
+        return view('admin.laporan.show', [
+            "title" => "Detail Laporan",
+            'laporan' => Transaksi::findOrfail($id)
+        ]);
     }
 
     /**
@@ -58,9 +88,12 @@ class LaporanController extends Controller
      * @param  \App\Models\Transaksi  $Transaksi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaksi $transaksi)
+    public function edit($id)
     {
-        //
+        return view('admin.laporan.edit', [
+            "title" => "Ubah Laporan",
+            'data' => Transaksi::findOrfail($id)
+        ]);
     }
 
     /**
@@ -70,9 +103,18 @@ class LaporanController extends Controller
      * @param  \App\Models\Transaksi  $Transaksi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaksi $transaksi)
+    public function update(Request $request, $id, DataMobil $mobil)
     {
-        //
+        if ($request->status == "Done") {
+            $mobil->status = "terpakai";
+        } else {
+            $mobil->status = "terpakai";
+        }
+        $update = Transaksi::findOrFail($id);
+        $update->update([
+            'status' => $request->status
+        ]);
+        return redirect('/admin/laporan');
     }
 
     /**
@@ -81,8 +123,12 @@ class LaporanController extends Controller
      * @param  \App\Models\Transaksi  $Transaksi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaksi $transaksi)
+    public function destroy(Transaksi $transaksi, $id)
     {
-        //
+        if ($transaksi->foto) {
+            Storage::delete($transaksi->foto);
+        }
+        Transaksi::destroy($id);
+        return redirect('/admin/laporan');
     }
 }

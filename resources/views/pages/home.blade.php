@@ -15,7 +15,16 @@
           <div class="carousel-caption text-start">
             <h2>Wira Wiri Car Rental</h2>
             <p>Rental mobil aman dan terpercaya dari kota Solo yang berdiri sejak 2013.</p>
-            <p><a class="btn btn-lg btn-dark opacity-75" href="/register">Sign up today</a></p>
+            @auth
+            <p>
+              <form action="/logout" method="POST" >
+              @csrf
+                <button type="submit" class="btn btn-lg btn-dark opacity-75" href="#">Log Out</button>
+              </form>
+            </p>
+            @else
+              <p><a class="btn btn-lg btn-dark opacity-75" href="/register">Sign up</a></p>
+            @endauth
           </div>
         </div>
       </div>

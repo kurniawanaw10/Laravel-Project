@@ -12,7 +12,7 @@
                     <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('rental') ? 'active' : '' }}" href="/rental">Daftar Mobil</a>
+                    <a class="nav-link {{ Request::is('rental') ? 'active' : '' }}" href="/rental">Rental Order</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('wisata') ? 'active' : '' }}" href="/wisata">Wisata</a>
@@ -25,12 +25,14 @@
                         Halo, {{ auth()->user()->nama_user }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-history" aria-hidden="true"></i> Riwayat Pesanan</a></li>
+                        <li><a class="dropdown-item" href="/riwayat"><i class="fa fa-history" aria-hidden="true"></i> Riwayat Pesanan</a></li>
                         <li><hr class="dropdown-divider"></li>
                         @can('admin')
                         <li><a class="dropdown-item" href="/admin"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
                         <li><hr class="dropdown-divider"></li>
                         @endcan
+                        <li><a class="dropdown-item" href="{{ route('pengaturan') }}"><i class="fa fa-cog" aria-hidden="true"></i> Pengaturan</a></li>
+                        <li><hr class="dropdown-divider"></li>
                         <li>
                             <form action="/logout" method="POST" >
                                 @csrf
@@ -43,7 +45,7 @@
             @else
                 <div class="text-end ms-auto">
                     <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='/login'">Login</button>
-                    <button type="button" class="btn btn-warning" onclick="window.location.href='/register'">Sign-up</button>
+                    <button type="button" class="btn btn-outline-warning" onclick="window.location.href='/register'">Sign-up</button>
                 </div>
             @endauth
         </div>

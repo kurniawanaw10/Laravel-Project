@@ -45,7 +45,6 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'nama_user' => ['required', 'max:255'],
             'alamat' => ['required', 'max:425'],
-            'nik' => ['required', 'numeric', 'unique:users'],
             'nomor_hp' => ['required', 'numeric', 'unique:users'],
             'email' => ['required', 'email:dns', 'unique:users'],
             'password' => ['required', 'min:8', 'max:255'],
@@ -98,14 +97,14 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'nama_user' => ['required', 'max:255'],
+            'nama_lengkap' => ['required', 'max:255'],
             'alamat' => ['required', 'max:425'],
-            'nik' => ['required', 'numeric'],
+            'jaminan' => ['required', 'max:225'],
             'nomor_hp' => ['required', 'numeric'],
             'email' => ['required', 'email:dns'],
-            'password' => ['required', 'min:8', 'max:255'],
         ]);
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        // $validatedData['password'] = Hash::make($validatedData['password']);
 
         User::find($user->id)->update($validatedData);
         return redirect('/admin/user');
