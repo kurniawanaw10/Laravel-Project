@@ -81,7 +81,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $data = User::findOrfail($user->id);
-        return view('admin.user.edit', compact(
+        return view('admin.user.edit', [
+            "title" => "Ubah Data"
+        ], compact(
             'data'
         ));
     }
@@ -93,20 +95,26 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'nama_user' => ['required', 'max:255'],
             'nama_lengkap' => ['required', 'max:255'],
             'alamat' => ['required', 'max:425'],
-            'jaminan' => ['required', 'max:225'],
             'nomor_hp' => ['required', 'numeric'],
             'email' => ['required', 'email:dns'],
+            'foto_diri' => ['image', 'file', 'max:3072'],
+            'password' => ['required_with:passwordConf'],
+            'passwordConf' => ['required', 'same:password']
         ]);
 
-        // $validatedData['password'] = Hash::make($validatedData['password']);
+        if ($request->file('foto_diri')) {
+            $validatedData['foto_diri'] = $request->file('foto_diri')->store('foto_diri');
+        }
 
-        User::find($user->id)->update($validatedData);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        User::find($id)->update($validatedData);
         return redirect('/admin/user');
     }
 

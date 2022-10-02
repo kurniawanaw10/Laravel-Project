@@ -15,7 +15,6 @@
                         <th>Alamat</th>
                         <th>No. HP</th>
                         <th>Email</th>
-                        <th>Jaminan Sewa</th> 
                         <th>Foto</th> 
                         <th>Aksi</th>
                     </tr>
@@ -27,13 +26,18 @@
                         <td>{{ $value->alamat }}</td>
                         <td>{{ $value->nomor_hp }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>{{ $value->jaminan }}</td>
-                        <td><img src="{{ asset('storage/'.$value->foto_diri) }}" alt="" class="img-thumbnail"></td>
+                        <td>
+                            @if ($value->foto_diri)
+                                <img src="{{ asset('storage/'. $value->foto_diri) }}" alt="" style="height: 148px; width: 120px;" class="img-thumbnail">
+                            @else
+                                <img src="{{ asset('dist/img/foto-sampul.jpg') }}" alt="" style="height: 148px; width: 120px;" class="img-thumbnail">
+                            @endif
+                        </td>
                         <td width="8%">
-                            <div class="row">
-                                <div class="p-1">
+                            <div class="row justify-content-center">
+                                {{-- <div class="p-1">
                                     <a href="/admin/user/{{ $value->id }}/edit" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                </div>
+                                </div> --}}
                                 <div class="p-1">
                                     <form action="/admin/user/{{ $value->id }}" method="POST">
                                         @method('delete')

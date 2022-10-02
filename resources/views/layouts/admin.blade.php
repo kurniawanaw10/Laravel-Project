@@ -39,7 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="/" class="nav-link">Home</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="/rental" class="nav-link">Daftar Mobil</a>
+                <a href="/rental" class="nav-link">Rental Order</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="/wisata" class="nav-link">Wisata</a>
@@ -73,7 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-            <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset('dist/img/foto-sampul.jpg') }}" class="img-circle elevation-2" alt="User Image" style="height: 38px; width:38px">
             </div>
             <div class="info">
             <a href="/admin" class="d-block">{{ auth()->user()->nama_user }}</a>
@@ -85,36 +85,64 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
-            <li class="nav-item">
-                <a href="/admin" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Dashboard</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/admin/mobil" class="nav-link">
-                <i class="nav-icon fas fa-car"></i>
-                <p>Data Mobil</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/admin/user" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
-                <p>Data User</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/admin/wisata" class="nav-link">
-                <i class="nav-icon fas fa-map-marked-alt"></i>
-                <p>Data Wisata</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/admin/laporan" class="nav-link">
-                <i class="nav-icon fas fa-folder-open"></i>
-                <p>Laporan Transaksi</p>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/mobil" class="nav-link {{ Request::is('admin/mobil') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-car"></i>
+                    <p>Data Mobil</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/user" class="nav-link {{ Request::is('admin/user') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>Data User</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/wisata" class="nav-link {{ Request::is('admin/wisata') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-map-marked-alt"></i>
+                    <p>Data Wisata</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/laporan" class="nav-link {{ Request::is('admin/laporan') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-file" aria-hidden="true"></i>
+                        <p>Laporan Transaksi</p>
+                    </a>
+                    </li>
+                {{-- <li class="nav-item">
+                    <a href="" class="nav-link {{ Request::is('admin/laporan') ? 'active' : '' }} {{ Request::is('laporan/cetak') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-folder-open"></i>
+                    <p>Laporan<i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                        <a href="/admin/laporan" class="nav-link {{ Request::is('admin/laporan') ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Laporan Transaksi</p>
+                        </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                        <a href="{{ route('cetak-transaksi') }}" class="nav-link {{ Request::is('laporan/cetak') ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Cetak Laporan</p>
+                        </a>
+                        </li>
+                    </ul>
+                </li> --}}
+                <li class="nav-item">
+                    <a href="{{ route('pengaturan') }}" class="nav-link">
+                    <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+                    <p>Pengaturan</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

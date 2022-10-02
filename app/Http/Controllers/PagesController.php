@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Wisata;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PagesController extends Controller
 {
@@ -46,7 +47,8 @@ class PagesController extends Controller
     public function pengaturan()
     {
         return view('pages.pengaturan', [
-            "title" => "Pengaturan"
+            "title" => "Pengaturan",
+            'data' => User::where('id', auth()->user()->id)->get()
         ]);
     }
 
@@ -58,18 +60,31 @@ class PagesController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, $id)
     {
         $validatedData = $request->validate([
             'nama_user' => ['required', 'max:255'],
             'nama_lengkap' => ['required', 'max:255'],
             'alamat' => ['required', 'max:425'],
-            'jaminan' => ['required', 'max:225'],
             'nomor_hp' => ['required', 'numeric'],
             'email' => ['required', 'email:dns'],
+            'foto_diri' => ['image', 'file', 'max:3072'],
+            'password' => ['required_with:passwordConf'],
+            'passwordConf' => ['required', 'same:password'],
         ]);
 
+        if ($request->file('foto_diri')) {
+            $validatedData['foto_diri'] = $request->file('foto_diri')->store('foto_diri');
+        }
+        // if (Hash::check($validatedData['password'], $user->password)) {
+            // }
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
         // $validatedData['password'] = Hash::make($validatedData['password']);
+        // if (Hash::check('password', $user->password)) {
+        //     // Success
+        // }
+        // $validatedData['password'] = Hash::check($request->password, $user['password']);
 
         User::find($id)->update($validatedData);
         return redirect()->route('pengaturan');

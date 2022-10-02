@@ -15,7 +15,7 @@
     <div class="row py-5 justify-content-center">
         <div class="col-lg-5">
             <main class="form-registration">
-                <h1 class="h3 my-3 fw-normal text-center">Form Registration</h1>
+                <h1 class="h3 my-3 fw-normal text-black text-center"><b>Form Registration</b></h1>
                 <br>
                 <form action="/register" method="POST">
                     @csrf
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-floating">
                         <input type="text" name="nama_lengkap" class="form-control rounded-top @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" placeholder="Nama Lengkap" value="{{ old('nama_lengkap') }}">
-                        <label for="namauser">Nama Lengkap</label>
+                        <label for="namalengkap">Nama Lengkap</label>
                         @error('nama_lengkap')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -47,7 +47,7 @@
                         @enderror
                     </div>
                     <div class="form-floating">
-                        <input type="text" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" id="nomorhp" placeholder="Nomor Handphone" value="{{ old('nomor_hp') }}">
+                        <input type="numeric" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" id="nomorhp" placeholder="Nomor Handphone" value="{{ old('nomor_hp') }}">
                         <label for="nomorhp">No. Handphone</label>
                         @error('nomor_hp')
                             <div class="invalid-feedback">
@@ -73,24 +73,10 @@
                             </div>
                         @enderror
                     </div>
-                    {{-- <div class="form-floating">
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password">
-                        <label for="password">Password</label>
-                        @error('password')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div> --}}
                     <div class="form-floating">
-                        <select id="jaminan" name="jaminan" class="form-select rounded-bottom @error('jaminan') is-invalid @enderror">
-                            <option selected>Pilih Jaminan</option>
-                            <option value="KTP">Kartu Tanda Penduduk</option>
-                            <option value="Kartu Keluarga">Kartu Keluarga</option>
-                            <option value="Kartu BPJS">Kartu BPJS</option>
-                        </select>
-                        <label for="jaminan">Jaminan Sewa</label>
-                        @error('jaminan')
+                        <input type="password" name="checkPass" class="form-control @error('checkPass') is-invalid @enderror" id="checkPass" placeholder="Confirm Password">
+                        <label for="checkPass">Confirm Password</label>
+                        @error('checkPass')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

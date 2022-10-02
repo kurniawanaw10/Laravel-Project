@@ -23,8 +23,9 @@ class RegisterController extends Controller
             'nama_lengkap' => ['required', 'max:255'],
             'alamat' => ['required', 'max:425'],
             'nomor_hp' => ['required', 'numeric', 'min:11', 'unique:users'],
-            'email' => ['required', 'email:dns', 'unique:users'],
-            'password' => ['required', 'min:8', 'max:255']
+            'email' => ['required', 'unique:users', 'email:dns'],
+            'password' => ['required', 'min:8', 'max:13'],
+            'checkPass' => ['required', 'same:password']
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);

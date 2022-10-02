@@ -18,23 +18,29 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporan = Transaksi::get();
+        $laporan = Transaksi::latest()->first();
         return view('admin.laporan.index', [
             "title" => "Laporan",
             'reports' => $laporan
         ]);
     }
 
-    public function print()
+    public function cetakform()
     {
+        return view('admin.laporan.cetak');
+    }
+
+    public function print(Request $request)
+    {
+        // dd($request->tglawal);
         $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        $laporan = Transaksi::whereBetween('created_at', [$request->tglawal, $request->tglakhir])->get();
+        // dd($laporan);
+
         return view('admin.laporan.receipt-all', [
-            'laporan' => Transaksi::all(),
+            'laporan' => $laporan,
             'today' => $today
         ]);
-        // ->with([
-        //     'today' => $today
-        // ])
     }
 
     /**
@@ -105,11 +111,15 @@ class LaporanController extends Controller
      */
     public function update(Request $request, $id, DataMobil $mobil)
     {
-        if ($request->status == "Done") {
+
+        $mobil = DataMobil::find($request->mobil_id);
+        if ($request->status == "Progress") {
             $mobil->status = "terpakai";
         } else {
-            $mobil->status = "terpakai";
+            $mobil->status = "tersedia";
         }
+        $mobil->save();
+
         $update = Transaksi::findOrFail($id);
         $update->update([
             'status' => $request->status

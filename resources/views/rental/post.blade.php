@@ -4,8 +4,9 @@
 <div class="py-5">
     <form action="{{ route('sewa-store', $mobil->id) }}" method="POST" enctype="multipart/form-data" class="m-3">
         @csrf
-        <input type="hidden" name="driver" value="{{ $driver }}">
         <input type="hidden" name="pembayaran" value="{{ $pembayaran }}">
+        <input type="hidden" name="jaminan" value="{{ $jaminan }}">
+        <input type="hidden" name="driver" value="{{ $driver }}">
         <div class="card" style="min-height: 540px;">
             <div class="row g-0">
                 <div class="col-md-6 p-4">
@@ -43,64 +44,101 @@
                 </div>
                 <div class="col-md-6 p-4">
                     <h4 class="p-3 text-center">Verifikasi Data</h4>
-                    <div class="row my-3 d-flex justify-content-center">
-                        <div class="col-md-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label for="tanggal1">Tanggal Sewa</label>
                                 <input class="form-control" type="text" id="tanggal1" value="{{ date('D, d F Y', strtotime($tgl_pinjam))  }}" disabled>
                                 <input type="hidden" name="tgl_pinjam" id="tanggal1" value="{{ $tgl_pinjam }}">
                             </div>
+                        </div>
+                        <div class="col-md-6">     
+                            <div class="form-group mb-3">
+                                <label for="tanggal2">Tanggal Kembali</label>
+                                <input class="form-control" type="text" id="tanggal2" name="tgl_kembali" value="{{ date('D, d F Y', strtotime($tgl_kembali)) }}" disabled>
+                                <input type="hidden" name="tgl_kembali" id="tanggal2" value="{{ $tgl_kembali }}">
+                            </div>                   
+                            
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label for="hari">Jumlah Hari</label>
                                 <input class="form-control" type="text" id="hari" value="{{ $hari }} Hari" disabled>
                                 <input type="hidden" name="hari" id="hari" value="{{ $hari }}">
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="tanggal2">Tanggal Kembali</label>
-                                <input class="form-control" type="text" id="tanggal2" name="tgl_kembali" value="{{ date('D, d F Y', strtotime($tgl_kembali)) }}" disabled>
-                                <input type="hidden" name="tgl_kembali" id="tanggal2" value="{{ $tgl_kembali }}">
+                                <label for="pembayaran">Metode Pembayaran</label>
+                                <input class="form-control" type="text" id="pembayaran" value="{{ $pembayaran }}" disabled>
+                                <input type="hidden" name="pembayaran" id="pembayaran" value="{{ $pembayaran }}">
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="jaminan">Jaminan</label>
+                                <input class="form-control" type="text" id="jaminan" name="tgl_kembali" value="{{ $jaminan }}" disabled>
+                                <input type="hidden" name="jaminan" id="jaminan" value="{{ $jaminan }}">
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="driver">Driver</label>
+                                @if ($driver == 'on')                                    
+                                    <input class="form-control" type="text" id="driver" value="Dengan Driver" disabled>
+                                @elseif ($driver == 'off')
+                                    <input class="form-control" type="text" id="driver" value="Tanpa Driver" disabled>
+                                @endif
+                                <input type="hidden" name="driver" id="driver" value="{{ $driver }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12">
                             <div class="form-group mb-3">
                                 <label for="biaya">Total Biaya</label>
                                 <input class="form-control" type="text" id="biaya" value="@currency($biaya)" disabled>
                                 <input type="hidden" name="biaya" id="biaya" value="{{ $biaya }}">
                             </div>
                         </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
                         <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#myModal">Pesan</button>
                         <input class="btn btn-danger mt-2" type="button" value="Batal" onclick="window.history.back()" />
-                
+                    </div>
                         <!-- The Modal -->
-                        <div class="modal" id="myModal">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content" style="background-color: #212529">
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title text-white">Silahkan Melakukan Pembayaran</h4>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <div class="modal-body text-center" style="background-color: #F8F7F3">
-                                        <h6>Nomor Rekening :</h6>
-                                        BCA a.n. Ryan Aninditya Manggala
-                                        <br>
-                                        <h6>7850728296</h6>
-                                        <br>
-                                        Konfirmasi Pemesanan :
-                                        <br>
-                                        <i class="fa fa-phone" aria-hidden="true"></i> : 0812 2567 1933 – 085 725 6666 81
-                                        <br>
-                                        <i class="fa fa-envelope" aria-hidden="true"></i> : wirawirisolo@gmail.com
-                                    </div>
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                        <button type="sumbit" class="btn btn-outline-warning">Simpan</button>
-                                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Batal</button>
-                                    </div>
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content" style="background-color: #212529">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title text-white">Silahkan Melakukan Pembayaran</h4>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body text-center" style="background-color: #F8F7F3">
+                                    <h6>Nomor Rekening :</h6>
+                                    BCA a.n. Ryan Aninditya Manggala
+                                    <br>
+                                    <h6>7850728296</h6>
+                                    <br>
+                                    Konfirmasi Pemesanan :
+                                    <br>
+                                    <i class="fa fa-phone" aria-hidden="true"></i> : 0812 2567 1933 – 085 725 6666 81
+                                    <br>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i> : wirawirisolo@gmail.com
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="sumbit" class="btn btn-outline-warning">Simpan</button>
+                                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>

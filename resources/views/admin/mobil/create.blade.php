@@ -18,7 +18,7 @@
                 </div>
                 <div class="mt-3">
                     <label for="inputTahun" class="form-label">Tahun</label>
-                    <input type="text" class="form-control @error('tahun_mobil') is-invalid @enderror" id="inputTahun" name="tahun_mobil" value="{{ old('tahun_mobil') }}">
+                    <input type="number" class="form-control @error('tahun_mobil') is-invalid @enderror" id="inputTahun" name="tahun_mobil" value="{{ old('tahun_mobil') }}">
                     @error('tahun_mobil')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mt-3">
                     <label for="inputSeat" class="form-label">Kapasitas</label>
-                    <input type="text" class="form-control @error('seat_mobil') is-invalid @enderror" id="inputSeat" name="seat_mobil" value="{{ old('seat_mobil') }}">
+                    <input type="number" class="form-control @error('seat_mobil') is-invalid @enderror" id="inputSeat" name="seat_mobil" value="{{ old('seat_mobil') }}">
                     @error('seat_mobil')
                         <div class="invalid-feedback">
                             {{ $message }}

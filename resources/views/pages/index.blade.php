@@ -3,7 +3,7 @@
 <div class="py-5" style="min-height: 400px">
     <div class="row">
         <div class="col">
-            <h1 class="text-center pb-4">Riwayat Pemesanan</h1>
+            <h1 class="text-center text-black pb-4"><b>Riwayat Pemesanan</b></h1>
             <div class="table-responsive">
                 <table class="table my-4 text-center">
                     <tr>

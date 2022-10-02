@@ -26,6 +26,7 @@
                             <td>{{ date('d-m-Y', strtotime($data->tgl_pinjam)) }}</td>
                             <td>{{ date('d-m-Y', strtotime($data->tgl_kembali)) }}</td>
                             <td>@currency($data->harga)</td>
+                            <input type="hidden" name="mobil_id" value="{{ $data->mobil_id }}">
                             <td>
                                 <select class="custom-select" name="status">
                                     <option value="Unpaid" selected>Unpaid</option>

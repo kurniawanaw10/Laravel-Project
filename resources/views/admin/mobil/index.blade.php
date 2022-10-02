@@ -18,6 +18,7 @@
                         <th>Bahan Bakar</th>
                         <th>Harga</th>
                         <th>Foto</th>
+                        <th>Status</th>
                         <th colspan="2">Aksi</th>
                     </tr>
                     @foreach ($datas as $value)
@@ -34,6 +35,13 @@
                             <div style="max-width: 140px; overflow:hidden;">
                                 <img src="{{ asset('storage/'.$value->foto_mobil) }}" alt="" class="img-fluid">
                             </div>
+                        </td>
+                        <td>
+                            @if ($value->status == 'terpakai')
+                                <a class="badge btn-warning btn-sm text-decoration-none disabled">Terpakai</a>
+                            @else
+                                <a class="badge btn-success btn-sm text-decoration-none disabled">Tersedia</a>
+                            @endif
                         </td>
                         <td>
                             <a href="{{ url('admin/mobil/'.$value->id.'/edit' ) }}" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>

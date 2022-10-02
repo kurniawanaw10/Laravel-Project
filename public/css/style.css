@@ -32,3 +32,16 @@
 .footer a:hover{
     color: #D9D8D4
 }
+
+div.box {
+    border: 1px black solid;
+    height: 160px;
+    width: px;
+    background: #444;
+    display: table-cell;
+    vertical-align: middle;
+}
+.box img {
+    display:block;
+    margin: 0px auto;
+}

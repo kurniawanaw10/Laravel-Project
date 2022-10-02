@@ -4,40 +4,45 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-tittle mb-4">Laporan Transaksi</h4>
-        <h6 class="text-bold ml-2">Filter</h6>
         <div class="row">
-            <div class="col-6">
-                <select class="custom-select w-50">
-                    <option selected>Pilih bulan</option>
-                    <option value="1">Januari</option>
-                    <option value="2">Februari</option>
-                    <option value="3">Maret</option>
-                    <option value="4">April</option>
-                    <option value="5">Mei</option>
-                    <option value="6">Juni</option>
-                    <option value="7">Juli</option>
-                    <option value="8">Agustus</option>
-                    <option value="9">September</option>
-                    <option value="10">Oktober</option>
-                    <option value="11">November</option>
-                    <option value="12">Desember</option>
-                </select>
-                <select class="custom-select w-25">
-                    <option selected>Pilih tahun</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                </select>
-                <button class="btn btn-outline-dark" type="submit">Cari</button>
+            <div class="col-lg-8">
+                <form action="{{ route('cetak-laporan') }}" method="GET" target="_blank">
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label class="form-label">Tanggal Awal</label>
+                            <input class="form-control @error('tglawal') is_invalid @enderror" type="date" name="tglawal" id="awal" required autofocus>
+                            @error('tglawal')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="form-label">Tanggal Akhir</label>
+                            <input class="form-control @error('tglakhir') is_invalid @enderror" type="date" name="tglakhir" id="akhir" onchange="tglantara()" required autofocus>
+                            @error('tglakhir')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-4 d-flex align-items-end">
+                            <button type="submit" class="btn btn-outline-primary" onclick="tglantara(event);"><i class="fa fa-print" aria-hidden="true"></i> Cetak</button> 
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-6">
+            <div class="col-lg-4">
                 <form action="{{ route('search') }}" method="get">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control w-75" name="search" placeholder="Masukkan keyword..." value="{{ old('search') }}">
-                        <button class="btn btn-outline-dark" type="submit">Cari</button>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <label for="form-label">Pencarian</label>
+                            <input type="text" class="form-control" name="search" placeholder="Masukkan keyword..." value="{{ old('search') }}" required autofocus>
+                        </div>
+                        <div class="col-lg-4 d-flex align-items-end">
+                            <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -71,7 +76,7 @@
                         <a class="badge btn-danger btn-sm text-decoration-none disabled"><i class="fa fa-times" aria-hidden="true"></i></a>
                     @endif
                 </td> --}}
-                <td width="10%">@currency($value->harga)</td>
+                <td width="12%">@currency($value->harga)</td>
                 <td>
                     @if ($value->status == 'Progress')
                         <a class="badge btn-warning btn-sm text-decoration-none disabled">On Progress</a>
@@ -101,7 +106,7 @@
                     </div>
                     <div class="row">
                         <div class="p-1">
-                            <a href="{{ route('cetak-innvoice', $value->id) }}" target="_blank" class="btn btn-secondary btn-sm"><i class="fa fa-print" aria-hidden="true"></i></a>
+                            <a href="{{ route('cetak-innvoice', $value->id) }}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-print" aria-hidden="true"></i></a>
                         </div>
                         <div class="p-1">
                             <a href="{{ route('show-laporan', $value->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -119,7 +124,7 @@
                         </div>
                         <!-- Modal body -->
                         <div class="modal-body text-center" style="background-color: #F8F7F3">
-                            @if ($value->bukti == 0)
+                            @if ($value->bukti)
                                 <img src="{{ asset('storage/'.$value->bukti) }}" class="img-fluid rounded" alt="...">
                             @endif
                         </div>
@@ -134,4 +139,17 @@
         </table>
     </div>
 </div>
+<script>
+    function tglantara(e) {
+        var awal = document.getElementById("awal").value;
+        var akhir = document.getElementById("akhir").value;
+
+        if ( akhir <= awal) {
+            alert("Tidak Dapat Memilih Tanggal Awal Kurang Dari Tanggal Akhir");
+            e.preventDefault();
+            return false;
+        }
+        return true;
+    }
+</script>
 @endsection

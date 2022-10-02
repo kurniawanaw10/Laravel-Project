@@ -20,23 +20,19 @@
                         </div>
                         <div class="col-6">
                             <label for="inputFullname" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="inputFullname" name="nama_lengkap" value="{{ old('nama_lengkap', $data->nama_lengkap) }}">
+                            <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" id="inputFullname" name="nama_lengkap" value="{{ old('nama_lengkap', $data->nama_lengkap) }}">
+                            @error('nama_lengkap')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-9">
+                        <div class="col-12">
                             <label for="inputAlamat" class="form-label">Alamat</label>
-                            <input type="text" id="inputAlamat" class="form-control" name="alamat" value="{{ old('alamat', $data->alamat) }}">
-                        </div>
-                        <div class="col-3">
-                            <label for="inputJaminan" class="form-label">Jaminan</label>
-                            <select id="inputJaminan" name="jaminan" class="form-select  @error('jaminan') is-invalid @enderror">
-                                <option>Pilih Jaminan</option>
-                                <option value="KTP" selected>Kartu Tanda Penduduk</option>
-                                <option value="Kartu Keluarga">Kartu Keluarga</option>
-                                <option value="Kartu BPJS">Kartu BPJS</option>
-                            </select>
-                            @error('jaminan')
+                            <input type="text" id="inputAlamat" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat', $data->alamat) }}">
+                            @error('alamat')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -63,12 +59,43 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="formFile" class="form-label">Foto Diri</label>
+                            <input class="form-control @error('foto_diri') is-invalid @enderror" type="file" name="foto_diri" id="formFile">
+                            @error('foto_diri')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="inputPass" class="form-label">Current Password</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="inputPass" name="password">
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-6">
+                            <label for="ConfirmPass" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control @error('passwordConf') is-invalid @enderror" id="ConfirmPass" name="passwordConf">
+                            @error('passwordConf')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="text-center">
                         <div class="d-inline p-2">
                             <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                         </div>    
                         <div class="d-inline p-2">
-                            <input class="btn btn-secondary mt-3" type="button" value="Kembali" onclick="window.history.back()" />
+                            <a href="{{ route('pengaturan') }}" class="btn btn-secondary mt-3">Kembali</a>
                         </div>    
                     </div>
                 </form>

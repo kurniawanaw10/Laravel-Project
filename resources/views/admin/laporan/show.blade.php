@@ -4,74 +4,57 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <img src="{{ asset('storage/'.$laporan->mobil->foto_mobil) }}" class="img-fluid rounded" alt="...">
-                <h2 class="text-bold mt-5 text-center">{{ $laporan->mobil_nama }}</h2>
+                <h2 class="text-bold mt-3 text-center">{{ $laporan->mobil_nama }}</h2>                
             </div>
-            <div class="col-lg-4 text-center">
-                <h2 class="text-bold mb-3">Data Mobil</h2>
-                <table class="table table-borderless mt-4">
+            <div class="col-lg-7">
+                <div class="text-center mt-5">
+                    <img src="{{ asset('dist/img/foto-sampul.jpg') }}" class="mb-4" alt="" style="height: 140px; width: 120px;">
+                    <h2 class="text-bold mt-4">Data User</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <table class="table table-bordered mt-4">
                     <tr>
                         <th>Transmisi</th>
-                        <td> : </td>
                         <td>{{ $laporan->mobil->transmisi }}</td>
                     </tr>
                     <tr>
-                        <th>Kapasitas</th>
-                        <td> : </td>
-                        <td>{{ $laporan->mobil->seat_mobil }} Orang</td>
-                    </tr>
-                    <tr>
                         <th>Plat Nomor</th>
-                        <td> : </td>
                         <td>{{ $laporan->mobil_nomor }}</td>
                     </tr>
                     <tr>
-                        <th>Bahan Bakar</th>
-                        <td> : </td>
-                        <td>{{ $laporan->mobil->bahan_bakar }}</td>
-                    </tr>
-                    <tr>
                         <th>Harga Sewa</th>
-                        <td> : </td>
                         <td>@currency($laporan->mobil->harga)/Day</td>
                     </tr>
                     @if ($laporan->driver == "YES")
                     <tr>
                         <th>Biaya Sopir</th>
-                        <td> : </td>
                         <td>Rp. 100.000/Day</td>
                     </tr>
                     @endif
                 </table>
             </div>
-            <div class="col-lg-4 text-center">
-                <h2 class="text-bold mb-3">Data User</h2>
-                <table class="table table-borderless mt-4">
+            <div class="col-lg-7">
+                <table class="table table-bordered mt-4">
                     <tr>
                         <th>Nama Lengkap</th>
-                        <td> : </td>
                         <td>{{ $laporan->user->nama_lengkap }}</td>
                     </tr>
                     <tr>
                         <th>Alamat</th>
-                        <td> : </td>
                         <td>{{ $laporan->user->alamat }}</td>
                     </tr>
                     <tr>
                         <th>Nomor</th>
-                        <td> : </td>
                         <td>{{ $laporan->user->nomor_hp }}</td>
                     </tr>
                     <tr>
                         <th>E-mail</th>
-                        <td> : </td>
                         <td>{{ $laporan->user->email }}</td>
-                    </tr>
-                    <tr>
-                        <th>Jaminan</th>
-                        <td> : </td>
-                        <td>{{ $laporan->user->jaminan }}</td>
                     </tr>
                 </table>
             </div>
@@ -85,6 +68,7 @@
                     <th>Lama Sewa</th>
                     <th>Biaya</th>
                     <th>Driver</th>
+                    <th>Jaminan</th>
                     <th>Status</th>
                     <th>Bukti Tf</th>
                 </tr>
@@ -101,6 +85,7 @@
                             <a class="badge btn-danger text-decoration-none disabled"><i class="fa fa-times" aria-hidden="true"></i></a>
                         @endif
                     </td>
+                    <td >{{ $laporan->jaminan }}</td>
                     <td>
                         @if ($laporan->status == 'Progress')
                             <a class="badge btn-warning btn-sm text-decoration-none disabled">On Progress</a>

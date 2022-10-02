@@ -37,9 +37,9 @@
                     <td>{{ date('d F Y', strtotime($cetak->tgl_kembali)) }}</td>
                     <td>
                         @if ($cetak->driver == "YES")
-                            <a class="badge btn-success btn-sm text-decoration-none disabled"><i class="fa fa-check" aria-hidden="true"></i></a>
+                            <a class="badge btn-success btn-sm text-decoration-none disabled">Dengan Sopir</a>
                         @elseif ($cetak->driver == "NO")
-                            <a class="badge btn-danger btn-sm text-decoration-none disabled"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            <a class="badge btn-danger btn-sm text-decoration-none disabled">Tanpa Sopir</a>
                         @endif
                     </td>
                     <td width="10%">@currency($cetak->harga)</td>
@@ -56,6 +56,10 @@
                     </td>
 				</tr>
                 @endforeach
+                <tr>
+                    <td colspan="8"><b>Total Pendapatan</b></td>
+                    <td colspan="2">@currency($laporan->sum('harga'))</td>
+                </tr>
 			</table>
 		</div>
         <script type="text/javascript">

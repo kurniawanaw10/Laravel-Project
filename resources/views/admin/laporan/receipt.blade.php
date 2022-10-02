@@ -13,14 +13,14 @@
 		<div class="page-content container my-3 pt-3">
 			<div class="container px-0">
 				<div class="row mt-4">
-					<div class="col-12 col-lg-12">
+					<div class="col-12">
 						<div class="row">
-							<div class="col-4">
+							<div class="col-5">
 								<img src="{{ asset('dist/img/logo-1.png') }}" alt="">
 							</div>
-							<div class="col-8">
+							<div class="col-7">
 								<div class="text-110">
-									<span class="text-default-d3"><i class="fa fa-home" aria-hidden="true"></i> Gg. Ar Rahmah 3 No.30 Windan Baru Rt3/7 Gumpang, Kartasura, Sukoharjo, Jawa Tengah  </span> <br>
+									<span class="text-default-d3"><i class="fa fa-home" aria-hidden="true"></i> Gg. Ar Rahmah 3 No.30 Windan Rt3/7 Gumpang, Kartasura, Sukoharjo  </span> <br>
 									<span class="text-default-d3"><i class="fa fa-phone-square" aria-hidden="true"></i> 0812 2567 1933 – 085 725 6666 81  </span> <br>
 									<span class="text-default-d3"><i class="fa fa-envelope" aria-hidden="true"></i> wirawiri.solo@gmail.com </span> <br>
 									<span class="text-default-d3"><i class="fa fa-instagram" aria-hidden="true"></i> wirawiri_solo </span> 
@@ -35,7 +35,7 @@
 							<div class="col-sm-6">
 								<div>
 									<span class="text-sm text-grey-m2 align-middle">To : </span>
-									<span class="text-600 text-110 text-blue align-middle">Mr/Mrs {{ $print->user_nama }}</span>
+									<span class="text-600 text-110 text-blue align-middle">Mr/Mrs {{ $print->user->nama_lengkap }}</span>
 								</div>
 								<div class="text-grey-m2">
 									<div class="my-1">
@@ -251,7 +251,7 @@
 		</style>
 
 		<script type="text/javascript">
-			// window.print();
+			window.print();
 		</script>
 	</body>
 		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

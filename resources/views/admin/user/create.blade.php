@@ -19,9 +19,9 @@
                             @enderror
                         </div>
                         <div class="col-6">
-                            <label for="inputAlamat" class="form-label">Alamat</label>
-                            <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="inputAlamat" name="alamat" value="{{ old('alamat') }}">
-                            @error('alamat')
+                            <label for="inputFullname" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" id="inputFullname" name="nama_lengkap" value="{{ old('nama_lengkap') }}"> 
+                            @error('nama_lengkap')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -49,16 +49,16 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-6">
-                            <label for="inputNIK" class="form-label">NIK</label>
-                            <input type="text" class="form-control @error('nik') is-invalid @enderror" id="inputNIK" name="nik" value="{{ old('email') }}"> 
-                            @error('nik')
+                        <div class="col-8">
+                            <label for="inputAlamat" class="form-label">Alamat</label>
+                            <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="inputAlamat" name="alamat" value="{{ old('alamat') }}">
+                            @error('alamat')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <label for="inputPassword" class="form-label">Password</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror " id="inputPassword" name="password">
                             @error('password')
@@ -68,7 +68,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    {{-- <div class="row mb-3">
                         <div class="col-8">
                             <label class="mb-2" for="foto_diri">Foto Diri</label>
                             <input type="file" class="form-control-file @error('foto_diri') is-invalid @enderror" id="foto_diri" name="foto_diri">
@@ -78,7 +78,7 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
                     <button type="submit" class="btn btn-info mt-3">Simpan</button>    
                 </form>
             </div>

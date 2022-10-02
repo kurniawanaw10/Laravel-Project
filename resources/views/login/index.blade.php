@@ -31,7 +31,7 @@
                 @endif
 
                 <main class="form-signin">
-                    <h1 class="h3 mb-5 mt-3 fw-normal text-center">Silahkan Login</h1>
+                    <h1 class="h3 mb-5 mt-3 fw-normal text-black text-center"><b>Silahkan Login</b></h1>
                     <form action="/login" method="POST">
                         @csrf
                         <div class="form-floating">

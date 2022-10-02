@@ -13,8 +13,8 @@
 
         <div class="container">
           <div class="carousel-caption text-start">
-            <h2>Wira Wiri Car Rental</h2>
-            <p>Rental mobil aman dan terpercaya dari kota Solo yang berdiri sejak 2013.</p>
+            <h2 class="fs-1">Wira Wiri Car Rental</h2>
+            <p class="fs-4">Rental mobil aman dan terpercaya dari kota Solo yang berdiri sejak 2013.</p>
             @auth
             <p>
               <form action="/logout" method="POST" >
@@ -33,8 +33,8 @@
 
         <div class="container">
           <div class="carousel-caption">
-            <h2>Menawarkan kunjungan wisata untuk refreshing</h2>
-            <p>Berikut beberapa artikel mengenai tempat wisata yang menarik untuk dikunjungi.</p>
+            <h2 class="fs-3">Menawarkan kunjungan wisata untuk refreshing</h2>
+            <p class="fs-4">Berikut beberapa artikel mengenai tempat wisata yang menarik untuk dikunjungi.</p>
             <p><a class="btn btn-lg btn-dark opacity-75" href="/wisata">Tour & Travel</a></p>
           </div>
         </div>
@@ -44,8 +44,8 @@
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h2>Menawarkan kendaraan dengan kondisi yang prima</h2>
-            <p>Kendaraan yang kami tawarkan sangat terawat serta menggunakan driver professional.</p>
+            <h2 class="fs-3">Menawarkan kendaraan dengan kondisi yang prima</h2>
+            <p class="fs-4">Kendaraan yang kami tawarkan sangat terawat serta menggunakan driver professional.</p>
             <p><a class="btn btn-lg btn-dark opacity-75" href="/rental">Car Rental</a></p>
           </div>
         </div>
@@ -71,21 +71,21 @@
 
       <h2 class="mt-3">{{ $wisatas[0]->judul }}</h2>
       <p>{{ $wisatas[0]->excerpt }}</p>
-      <p><a class="btn btn-outline-dark" href="/admin/wisata/{{ $wisatas[0]->id }}">View details &raquo;</a></p>
+      <p><a class="btn btn-outline-dark" href="/wisata/{{ $wisatas[0]->id }}">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="bd-placeholder-img rounded-circle" src="{{ asset('storage/'.$wisatas[1]->foto) }}" width="140" height="140" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
 
       <h2 class="mt-3">{{ $wisatas[1]->judul }}</h2>
       <p>{{ $wisatas[1]->excerpt }}</p>
-      <p><a class="btn btn-outline-dark" href="/admin/wisata/{{ $wisatas[1]->id }}">View details &raquo;</a></p>
+      <p><a class="btn btn-outline-dark" href="/wisata/{{ $wisatas[1]->id }}">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="bd-placeholder-img rounded-circle" src="{{ asset('storage/'.$wisatas[2]->foto) }}" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
 
       <h2 class="mt-3">{{ $wisatas[2]->judul }}</h2>
       <p>{{ $wisatas[2]->excerpt }}</p>
-      <p><a class="btn btn-outline-dark" href="/admin/wisata/{{ $wisatas[2]->id }}">View details &raquo;</a></p>
+      <p><a class="btn btn-outline-dark" href="/wisata/{{ $wisatas[2]->id }}">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
   </div><!-- /.row -->
 
