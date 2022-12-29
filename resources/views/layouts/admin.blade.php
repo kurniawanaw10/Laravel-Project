@@ -64,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
-        <img src="{{ asset('dist/img/logoww.png') }}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
+        <img src="{{ asset('dist/img/logoww.png') }}" alt="AdminLTE Logo" class="brand-image elevation-2" style="opacity: .8">
         <span class="brand-text">Wira Wiri Solo</span>
         </a>
 
@@ -73,7 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('dist/img/foto-sampul.jpg') }}" class="img-circle elevation-2" alt="User Image" style="height: 38px; width:38px">
+                <img src="{{ asset('storage/'. auth()->user()->foto_diri) }}" class="rounded-circle elevation-2" alt="User Image" style="width:36px; height:40px">
             </div>
             <div class="info">
             <a href="/admin" class="d-block">{{ auth()->user()->nama_user }}</a>

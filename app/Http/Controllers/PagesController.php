@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Wisata;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class PagesController extends Controller
@@ -22,8 +23,9 @@ class PagesController extends Controller
 
     public function admin()
     {
+        $info = DB::table('transaksi')->orderBy('created_at', 'desc')->get();
         return view('admin.dashboard', [
-            'reports' => Transaksi::all(),
+            'reports' => $info,
             'datas' => DataMobil::all(),
             'wisatas' => Wisata::all()
         ]);
@@ -77,7 +79,7 @@ class PagesController extends Controller
             $validatedData['foto_diri'] = $request->file('foto_diri')->store('foto_diri');
         }
         // if (Hash::check($validatedData['password'], $user->password)) {
-            // }
+        // }
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         // $validatedData['password'] = Hash::make($validatedData['password']);

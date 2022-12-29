@@ -174,7 +174,7 @@ class SewaController extends Controller
             'pembayaran' => $request->pembayaran
         ]);
 
-        return redirect()->route('rental');
+        return redirect('/riwayat');
         // }
     }
 

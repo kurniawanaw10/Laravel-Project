@@ -42,7 +42,7 @@ Route::get('/riwayat/receipt/{id}', [PagesController::class, 'cetak'])->name('ce
 // Route::get('/laporan/cetak-form', [LaporanController::class, 'cetakform'])->name('cetak-transaksi')->middleware('admin');
 Route::get('/laporan/cetak-laporan', [LaporanController::class, 'print'])->name('cetak-laporan')->middleware('admin');
 Route::get('/admin/laporan/{id}', [LaporanController::class, 'show'])->name('show-laporan')->middleware('admin');
-Route::get('/admin/laporan/{user_nama?}', [LaporanController::class, 'search'])->name('search')->middleware('admin');
+// Route::get('/admin/laporan/{user_nama?}', [LaporanController::class, 'search'])->name('search')->middleware('admin');
 Route::resource('/admin/laporan', LaporanController::class)->middleware('admin');
 
 //Function Mobil

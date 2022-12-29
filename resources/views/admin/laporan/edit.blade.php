@@ -37,7 +37,8 @@
                             </td>
                         </tr>
                     </table>
-                    <button type="submit" class="btn btn-info mt-3">Simpan</button> 
+                    <button type="submit" class="btn btn-primary mt-3">Simpan</button> 
+                    <button class="btn btn-secondary mt-3" onclick="window.back()">Kembali</button> 
                 </form>
             </div>
         </div>
