@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark animate__animated animate__fadeInDown">
     <div class="container">
         <a class="navbar-brand" href="/">
             <img src="{{ asset('dist/img/logoww.png') }}" width="52" height="30" alt="">
@@ -7,7 +7,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0 text-center">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
@@ -19,7 +19,7 @@
                 </li>
             </ul>
             @auth
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto text-center">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Halo, {{ auth()->user()->nama_user }}

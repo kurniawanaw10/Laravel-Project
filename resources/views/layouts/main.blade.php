@@ -16,6 +16,12 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <!-- Style -->
     <link rel="stylesheet" href="/css/carousel.css">
@@ -48,11 +54,28 @@
     <!-- FOOTER -->
     <div id="footer">
         <footer class="container footer">
-            <p class="float-end"><a href="#" class="text-decoration-none">Back to top</a></p>
-            <p style="color: #F8F7F3">&copy;  2022 <a href="https://www.linkedin.com/in/kurniawan-andika-wijaya-454a10213/" target="_blank" class="text-decoration-none">Kurniawan Andika W</a> &nbsp;&nbsp;&middot; <a href="https://wa.me/6281225671933" target="_blank" class="text-decoration-none">Contact</a> &nbsp; &middot; <a href="https://goo.gl/maps/iNpajmxcCms8aSSY8" target="_blank" class="text-decoration-none">Location</a></p>
+            <div class="row">
+                <div class="col">
+                    <a href="#"><img src="{{ asset('dist/img/logo-3.png') }}" width="240" height="54" alt=""></a>
+                </div>
+                <div class="col text-end">
+                    <a href="" class="fs-2 mx-2"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/wirawiri_solo" target="_blank" class="fs-2 mx-2"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/6281225671933" target="_blank" class="fs-2 mx-2"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center text-white-50">
+                    <p class="">&copy;  Copyright by Wira Wiri Car Rental Solo </p>
+                </div>
+            </div>
         </footer>
     </div>
-</body>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
     <script>
         $('input[name="dates"]').daterangepicker({
             "minDate": "0"
@@ -62,4 +85,5 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</body>
 </html>

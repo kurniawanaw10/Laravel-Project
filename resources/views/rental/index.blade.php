@@ -3,9 +3,9 @@
 @section('content')
 @if (auth()->user()) 
 <div class="pt-5">
-    <h1 class="text-center text-black"><b>Rental Order</b></h1>
+    <h1 class="text-center text-black animate__animated animate__fadeInDown"><b>Rental Order</b></h1>
     <div class="d-flex justify-content-center">
-        <div class="card col-lg-8 p-4 mt-4">
+        <div class="card col-lg-8 p-4 mt-4 animate__animated animate__zoomIn">
             <form action="{{ route('sewa-mobil') }}" method="GET" enctype="multipart/form-data">
             @csrf
             <div class="row d-flex justify-content-center">
