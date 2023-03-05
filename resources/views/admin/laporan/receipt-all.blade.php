@@ -43,9 +43,8 @@
 									<th>Plat Nomor</th>
 									<th>Tgl Pinjam</th>
 									<th>Tgl Kembali</th>
-									<th>Driver</th>
-									<th>Biaya</th>
 									<th>Status</th>
+									<th colspan="2">Biaya</th>
 								</tr>
 							</thead>
 							@foreach ($laporan as $cetak)
@@ -53,18 +52,10 @@
 								<td>{{ $loop->iteration }}</td>
 								<td>{{ $cetak->user->nama_lengkap }}</td>
 								<td>{{ $cetak->user_nomor }}</td>
-								<td>{{ $cetak->mobil_nama }}</td>
-								<td>{{ $cetak->mobil_nomor }}</td>
+								<td>{{ $cetak->nama_mobil }}</td>
+								<td>{{ $cetak->plat_nomor }}</td>
 								<td>{{ date('d F Y', strtotime($cetak->tgl_pinjam)) }}</td>
 								<td>{{ date('d F Y', strtotime($cetak->tgl_kembali)) }}</td>
-								<td>
-									@if ($cetak->driver == "YES")
-										<a class="badge btn-success btn-sm text-decoration-none disabled">Dengan Sopir</a>
-									@elseif ($cetak->driver == "NO")
-										<a class="badge btn-danger btn-sm text-decoration-none disabled">Tanpa Sopir</a>
-									@endif
-								</td>
-								<td width="10%">@currency($cetak->harga)</td>
 								<td>
 									@if ($cetak->status == 'Progress')
 										<a class="badge btn-warning btn-sm text-decoration-none disabled">On Progress</a>
@@ -76,6 +67,7 @@
 										<a class="badge btn-danger btn-sm text-decoration-none disabled">Unpaid</a>
 									@endif
 								</td>
+								<td width="15%">@currency($cetak->harga)</td>
 							</tr>
 							@endforeach
 							<tr>

@@ -22,4 +22,9 @@ class Transaksi extends Model
     {
         return $this->belongsTo(DataMobil::class, 'mobil_id', 'id');
     }
+
+    public function category()
+    {
+        return $this->hasMany(Category_harga::class, 'mobil_id');
+    }
 }

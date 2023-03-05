@@ -4,20 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class DataMobil extends Model
+class Category_harga extends Model
 {
     use HasFactory;
 
-    protected $table = 'data_mobil';
     protected $guarded = ['id'];
 
-    public function category()
+    public function mobil()
     {
-        return $this->hasMany(Category_harga::class);
+        return $this->belongsTo(DataMobil::class);
     }
-    
+
     public function transaksi()
     {
         return $this->belongsTo(Transaksi::class);

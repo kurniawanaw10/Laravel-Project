@@ -131,9 +131,5 @@
     </div>
   </div>
 
-  {{-- <hr class="featurette-divider"> --}}
-
-  <!-- /END THE FEATURETTES -->
-
-</div><!-- /.container -->
+</div>
 @endsection

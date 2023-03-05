@@ -54,7 +54,6 @@
                     <th>Plat Nomor</th>
                     <th>Tgl Pinjam</th>
                     <th>Tgl Kembali</th>
-                    <th>Driver</th>
                     <th>Jaminan</th>
                     <th>Biaya</th>
                     <th>Status</th>
@@ -64,18 +63,11 @@
                 @foreach ($reports as $value)
                 <tr style="width: 100%">
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $value->user_nama }}</td>
-                    <td>{{ $value->mobil_nama }}</td>
-                    <td>{{ $value->mobil_nomor }}</td>
+                    <td>{{ $value->nama_user }}</td>
+                    <td>{{ $value->nama_mobil }}</td>
+                    <td>{{ $value->plat_nomor }}</td>
                     <td>{{ date('d F Y', strtotime($value->tgl_pinjam)) }}</td>
                     <td>{{ date('d F Y', strtotime($value->tgl_kembali)) }}</td>
-                    <td>
-                        @if ($value->driver == "YES")
-                            <a class="badge btn-success btn-sm text-decoration-none disabled"><i class="fa fa-check" aria-hidden="true"></i></a>
-                        @elseif ($value->driver == "NO")
-                            <a class="badge btn-danger btn-sm text-decoration-none disabled"><i class="fa fa-times" aria-hidden="true"></i></a>
-                        @endif
-                    </td>
                     <td>{{ $value->jaminan }}</td>
                     <td width="10%">@currency($value->harga)</td>
                     <td>

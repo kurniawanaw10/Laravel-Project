@@ -13,10 +13,7 @@
                         <th>Nama Unit</th>
                         <th>Plat Nomor</th>
                         <th>Tahun</th>
-                        <th>Transmisi</th>
                         <th>Kapasitas</th>
-                        <th>Bahan Bakar</th>
-                        <th>Harga</th>
                         <th>Foto</th>
                         <th>Status</th>
                         <th colspan="2">Aksi</th>
@@ -27,10 +24,7 @@
                         <td>{{ $value->nama_mobil }}</td>
                         <td>{{ $value->plat_nomor }}</td>
                         <td>{{ $value->tahun_mobil }}</td>
-                        <td>{{ $value->transmisi }}</td>
                         <td>{{ $value->seat_mobil }} Orang</td>
-                        <td>{{ $value->bahan_bakar }}</td>
-                        <td>@currency($value->harga)</td>
                         <td>
                             <div style="max-width: 140px; overflow:hidden;">
                                 <img src="{{ asset('storage/'.$value->foto_mobil) }}" alt="" class="img-fluid">
@@ -45,6 +39,7 @@
                         </td>
                         <td>
                             <a href="{{ url('admin/mobil/'.$value->id.'/edit' ) }}" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ url('admin/mobil/'.$value->id.'/editharga' ) }}" class="btn btn-info btn-sm"><i class="fa fa-car" aria-hidden="true"></i></a>
                             <form action="{{ url('admin/mobil/'.$value->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">

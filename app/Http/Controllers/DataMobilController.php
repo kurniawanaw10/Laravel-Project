@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category_harga;
 use App\Models\DataMobil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -47,9 +48,9 @@ class DataMobilController extends Controller
             'tahun_mobil' => ['required'],
             'seat_mobil' => ['required', 'numeric'],
             'plat_nomor' => ['required', 'max:10', 'min:4', 'unique:data_mobil'],
-            'transmisi' => ['required'],
-            'bahan_bakar' => ['required'],
-            'harga' => ['required'],
+            // 'transmisi' => ['required'],
+            // 'bahan_bakar' => ['required'],
+            // 'harga' => ['required'],
             'foto_mobil' => ['image', 'file', 'max:3072'],
         ];
 
@@ -86,10 +87,41 @@ class DataMobilController extends Controller
      */
     public function edit($id)
     {
-        $model = DataMobil::findOrfail($id);
-        return view('admin.mobil.edit', compact(
-            'model'
-        ));
+        return view('admin.mobil.edit', [
+            'model' => DataMobil::findOrfail($id)
+        ]);
+    }
+
+    public function ubahharga($id)
+    {
+        return view('admin.mobil.editharga', [
+            'model' => DataMobil::findOrfail($id),
+            'cat' => Category_harga::all()
+        ]);
+    }
+
+    public function updateharga(Request $request, DataMobil $mobil)
+    {
+        // dd($request->harga);
+
+        $request->validate([
+            'deskripsi' => ['required'],
+            'harga' => ['required', 'numeric']
+        ]);
+
+        Category_harga::create([
+            'mobil_id' => $mobil->id,
+            'deskripsi' => $request->deskripsi,
+            'harga' => $request->harga
+        ]);
+
+        return redirect()->route('edit-harga', [$mobil->id]);
+    }
+
+    public function hapus($id)
+    {
+        Category_harga::destroy($id);
+        return redirect()->back();
     }
 
     /**
@@ -106,9 +138,6 @@ class DataMobilController extends Controller
             'tahun_mobil' => ['required'],
             'seat_mobil' => ['required', 'numeric'],
             'plat_nomor' => ['required', 'max:10', 'min:4'],
-            'transmisi' => ['required'],
-            'bahan_bakar' => ['required'],
-            'harga' => ['required'],
             'foto_mobil' => ['image', 'file', 'max:3072']
         ];
 

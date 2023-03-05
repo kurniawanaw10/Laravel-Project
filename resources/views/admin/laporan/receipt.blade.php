@@ -31,22 +31,27 @@
 
 						<hr class="row brc-default-l1 mx-n1 mb-4 mt-3" />
 					@foreach ($invoice as $print)
+						<div class="row justify-content-center">
+							<div class="text-center">
+								<b>
+									<h4>INVOICE</h4>
+									<h4>RENTCAR//INV-WWS/{{ $filter }}/{{ date('Y') }}</h4>
+								</b>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-sm-6">
 								<div>
-									<span class="text-sm text-grey-m2 align-middle">To : </span>
+									<span class="text-sm text-grey-m2 align-middle">Kepada : </span> <br>
 									<span class="text-600 text-110 text-blue align-middle">Mr/Mrs {{ $print->user->nama_lengkap }}</span>
 								</div>
 								<div class="text-grey-m2">
-									<div class="my-1">
-										<i class="fa fa-home" aria-hidden="true"></i> {{ $print->user->alamat }}
-									</div>
-									<div class="my-1"><i class="fa fa-phone-square" aria-hidden="true"></i> <b class="text-600">{{ $print->user_nomor }}</b></div>
+									<div class="my-1">{{ $print->user->alamat }}</div>
 								</div>
 							</div>
 							<!-- /.col -->
 
-							<div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+							{{-- <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
 								<hr class="d-sm-none" />
 								<div class="text-grey-m2">
 									<div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
@@ -69,7 +74,7 @@
 										@endif
 									</div>
 								</div>
-							</div>
+							</div> --}}
 							<!-- /.col -->
 						</div>
 
@@ -77,46 +82,51 @@
 							<div class="table-responsive">
 								<table class="table table-bordered">
 									<thead class="bg-none table-primary">
-										<tr class="">
+										<tr class="text-center">
 											<th>No.</th>
 											<th>Description</th>
-											<th>Unit Price</th>
-											<th>Day</th>
-											<th width="16%">Amount</th>
+											<th>Days</th>
+											<th>Rate</th>
+											<th width="16%">SubTotal</th>
 										</tr>
 									</thead>
 												
 									<tbody class="text-95 text-secondary-d3">
 										<tr>
-											<td>{{ $loop->iteration }}</td>
-											<td>Sewa Mobil {{ $print->mobil_nama }}
-												@if ($print->driver == "YES")
-													<span> + Driver </span>
-												@endif</td>
-											<td width="24%">@currency($print->mobil->harga) @if ($print->driver == "YES")<span>+ Rp. 100.000</span> @endif</td>
-											<td class="text-95">{{ $print->hari }} Hari</td>
-											<td class="text-secondary-d2">@currency($print->harga)</td>
+											<td width="8%" class="text-center">{{ $loop->iteration }}</td>
+											<td width="42%">{{ date('d/m/Y', strtotime($print->tgl_pinjam)) }} - {{ date('d/m/Y', strtotime($print->tgl_kembali)) }} <br>
+												&nbsp; Sewa Mobil {{ $print->nama_mobil }} {{ $print->layanan }}<br>
+												&nbsp; (Include driver & BBM)
+											</td>
+											<td class="text-95 text-center">{{ $print->hari }} Hari</td>
+											<td class="text-95 text-center">@currency($print->rate)</td>
+											<td class="text-95 text-center">@currency($print->harga)</td>
 										</tr>
 										<tr>
-											<td colspan="4" class="text-right"><b>Total Amount</b></td>
-											<td>@currency($print->harga)</td>
+											<td colspan="4" class="text-right"><b>Total</b></td>
+											<td class="text-center">@currency($print->harga)</td>
+										</tr>
+										<tr>
+											<td colspan="2">
+												<div class="text-110">
+													<b>Bank Transfer (BCA)</b>
+													<p> Nama : Ryan Aninditya M <br>
+													No. Rekening : 7850728296</p>
+												</div>
+											</td>
 										</tr>
 									</tbody>
 								</table>
-								<div class="text-110">
-									<b>Bank Transfer (BCA)</b>
-									<p> Nama : Ryan Aninditya M <br>
-									No. Rekening : 7850728296</p>
-								</div>
+								
 							</div>
 						</div>
 					@endforeach
 				<div class="row mt-5">
 					<div class="col-12">
 						<div class="table-responsive">
-							<table class="table table-borderless text-right">
+							<table class="table table-borderless">
 								<tr>
-									<td>Surakarta, {{ $today }} <br>Petugas,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;Surakarta, {{ $today }} <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Petugas,</td>
 								</tr>
 								<tr>
 									<td><br></td>
@@ -250,9 +260,9 @@
 			}
 		</style>
 
-		<script type="text/javascript">
+		{{-- <script type="text/javascript">
 			window.print();
-		</script>
+		</script> --}}
 	</body>
 		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>

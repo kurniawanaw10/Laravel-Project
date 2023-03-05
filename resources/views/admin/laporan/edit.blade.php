@@ -20,9 +20,9 @@
                             <th>Status</th>
                         </tr>
                         <tr style="width: 100%">
-                            <td>{{ $data->user_nama }}</td>
-                            <td>{{ $data->mobil_nama }}</td>
-                            <td>{{ $data->mobil_nomor }}</td>
+                            <td>{{ $data->nama_user }}</td>
+                            <td>{{ $data->nama_mobil }}</td>
+                            <td>{{ $data->plat_nomor }}</td>
                             <td>{{ date('d-m-Y', strtotime($data->tgl_pinjam)) }}</td>
                             <td>{{ date('d-m-Y', strtotime($data->tgl_kembali)) }}</td>
                             <td>@currency($data->harga)</td>
