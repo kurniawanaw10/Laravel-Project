@@ -13,17 +13,17 @@
 
         <div class="container">
           <div class="carousel-caption text-start">
-            <h2 class="fs-1">Wira Wiri Car Rental</h2>
-            <p class="fs-4">Rental mobil aman dan terpercaya dari kota Solo yang berdiri sejak 2013.</p>
+            <h2 class="fs-1  animate__animated animate__fadeInLeft">Wira Wiri Car Rental</h2>
+            <p class="fs-4 animate__animated animate__fadeInLeft">Rental mobil aman dan terpercaya dari kota Solo yang berdiri sejak 2013.</p>
             @auth
             <p>
               <form action="/logout" method="POST" >
               @csrf
-                <button type="submit" class="btn btn-lg btn-dark opacity-75" href="#">Log Out</button>
+                <button type="submit" class="btn btn-lg btn-dark opacity-75 animate__animated animate__fadeInLeft" href="#">Log Out</button>
               </form>
             </p>
             @else
-              <p><a class="btn btn-lg btn-dark opacity-75" href="/register">Sign up</a></p>
+              <p><a class="btn btn-lg btn-dark opacity-75 animate__animated animate__fadeInLeft" href="/register">Sign up</a></p>
             @endauth
           </div>
         </div>
@@ -33,9 +33,9 @@
 
         <div class="container">
           <div class="carousel-caption">
-            <h2 class="fs-3">Menawarkan kunjungan wisata untuk refreshing</h2>
-            <p class="fs-4">Berikut beberapa artikel mengenai tempat wisata yang menarik untuk dikunjungi.</p>
-            <p><a class="btn btn-lg btn-dark opacity-75" href="/wisata">Tour & Travel</a></p>
+            <h2 class="fs-3 animate__animated animate__fadeInUp">Menawarkan kunjungan wisata untuk refreshing</h2>
+            <p class="fs-4 animate__animated animate__fadeInUp">Berikut beberapa artikel mengenai tempat wisata yang menarik untuk dikunjungi.</p>
+            <p><a class="btn btn-lg btn-dark opacity-75 animate__animated animate__fadeInUp" href="/wisata">Tour & Travel</a></p>
           </div>
         </div>
       </div>
@@ -44,9 +44,9 @@
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h2 class="fs-3">Menawarkan kendaraan dengan kondisi yang prima</h2>
-            <p class="fs-4">Kendaraan yang kami tawarkan sangat terawat serta menggunakan driver professional.</p>
-            <p><a class="btn btn-lg btn-dark opacity-75" href="/rental">Car Rental</a></p>
+            <h2 class="fs-3 animate__animated animate__fadeInRight">Menawarkan kendaraan dengan kondisi yang prima</h2>
+            <p class="fs-4 animate__animated animate__fadeInRight">Kendaraan yang kami tawarkan sangat terawat serta menggunakan driver professional.</p>
+            <p><a class="btn btn-lg btn-dark opacity-75 animate__animated animate__fadeInRight" href="/rental">Car Rental</a></p>
           </div>
         </div>
       </div>
@@ -66,21 +66,21 @@
 
   <!-- Three columns of text below the carousel -->
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4" data-aos="zoom-in-up">
       <img class="bd-placeholder-img rounded-circle" src="{{ asset('storage/'.$wisatas[0]->foto) }}" width="140" height="140" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
 
       <h2 class="mt-3">{{ $wisatas[0]->judul }}</h2>
       <p>{{ $wisatas[0]->excerpt }}</p>
       <p><a class="btn btn-outline-dark" href="/wisata/{{ $wisatas[0]->id }}">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4">
+    <div class="col-lg-4" data-aos="zoom-in-up" data-aos-delay="200">
       <img class="bd-placeholder-img rounded-circle" src="{{ asset('storage/'.$wisatas[1]->foto) }}" width="140" height="140" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
 
       <h2 class="mt-3">{{ $wisatas[1]->judul }}</h2>
       <p>{{ $wisatas[1]->excerpt }}</p>
       <p><a class="btn btn-outline-dark" href="/wisata/{{ $wisatas[1]->id }}">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4">
+    <div class="col-lg-4" data-aos="zoom-in-up" data-aos-delay="400">
       <img class="bd-placeholder-img rounded-circle" src="{{ asset('storage/'.$wisatas[2]->foto) }}" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
 
       <h2 class="mt-3">{{ $wisatas[2]->judul }}</h2>
@@ -95,11 +95,11 @@
   <hr class="featurette-divider">
 
   <div class="row featurette">
-    <div class="col-md-7">
+    <div class="col-md-7" data-aos="fade-right">
       <h2 class="featurette-heading">Melayani secara Professional. <span class="text-muted">Pelayanan untuk Mentri BUMN.</span></h2>
       <p class="lead">Wira Wiri Car Rental menangani penyewaan kendaaran untuk keperluan dinas atau kunjungan kerja.</p>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5" data-aos="fade-left">
       <img class="bd-placeholder-img bd-placeholder-img-lg img-fluid mx-auto" src="{{ asset('/dist/img/1a.jpg') }}" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
 
     </div>
@@ -108,11 +108,11 @@
   <hr class="featurette-divider">
 
   <div class="row featurette">
-    <div class="col-md-7 order-md-2">
+    <div class="col-md-7 order-md-2" data-aos="fade-left">
       <h2 class="featurette-heading">Kendaraan dengan kondisi prima. <span class="text-muted">Unit dirawat dengan baik.</span></h2>
       <p class="lead">Wira Wiri Car Rental selalu melakukan pengecekan sebelum dan setelah penggunaan kendaraan. Serta melakukan servis kendaraan secara rutin. </p>
     </div>
-    <div class="col-md-5 order-md-1">
+    <div class="col-md-5 order-md-1" data-aos="fade-right">
       <img class="bd-placeholder-img bd-placeholder-img-lg img-fluid mx-auto" src="{{ asset('/dist/img/2.jpg') }}" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
 
     </div>
@@ -121,19 +121,15 @@
   <hr class="featurette-divider">
 
   <div class="row featurette">
-    <div class="col-md-7">
+    <div class="col-md-7" data-aos="fade-right">
       <h2 class="featurette-heading">Segera booking sekarang. <span class="text-muted">Dengan syarat yang mudah.</span></h2>
       <p class="lead">Anda hanya perlu melakukan registrasi serta mengisi form yang telah disediakan. Kami tunggu orderan anda!</p>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5" data-aos="fade-left">
       <img class="bd-placeholder-img bd-placeholder-img-lg img-fluid mx-auto" src="{{ asset('/dist/img/3.jpg') }}" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
 
     </div>
   </div>
 
-  {{-- <hr class="featurette-divider"> --}}
-
-  <!-- /END THE FEATURETTES -->
-
-</div><!-- /.container -->
+</div>
 @endsection

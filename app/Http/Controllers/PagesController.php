@@ -7,8 +7,12 @@ use App\Models\Transaksi;
 use App\Models\User;
 use App\Models\Wisata;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Romans\Filter\IntToRoman;
+
 
 class PagesController extends Controller
 {
@@ -22,10 +26,11 @@ class PagesController extends Controller
 
     public function admin()
     {
+        $info = DB::table('transaksi')->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.dashboard', [
-            'reports' => Transaksi::all(),
-            'datas' => DataMobil::all(),
-            'wisatas' => Wisata::all()
+            'reports' => $info,
+            'datas' => DataMobil::paginate(5),
+            'wisatas' => Wisata::paginate(5)
         ]);
     }
 
@@ -77,7 +82,7 @@ class PagesController extends Controller
             $validatedData['foto_diri'] = $request->file('foto_diri')->store('foto_diri');
         }
         // if (Hash::check($validatedData['password'], $user->password)) {
-            // }
+        // }
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         // $validatedData['password'] = Hash::make($validatedData['password']);
@@ -92,10 +97,21 @@ class PagesController extends Controller
 
     public function cetak($id)
     {
+        // $num = 390;
+        // foreach ($num as $inv) {
+        //     $inv = 'arm' . ($num + 1);
+        // }
+        // dd($inv);
+        $filter = new IntToRoman();
+        $todayMonth = Carbon::now()->isoFormat('M');
         $today = Carbon::now()->isoFormat('D MMMM Y');
+        // dd($todayMonth);
         return view('admin.laporan.receipt', [
-            'invoice' => Transaksi::where('id', $id)->get()
-        ])->with(['today' => $today]);
+            'invoice' => Transaksi::where('id', $id)->get(),
+            'filter' => $filter->filter($todayMonth)
+        ])->with([
+            'today' => $today
+        ]);
     }
 
     public function upload(Request $request, $id)

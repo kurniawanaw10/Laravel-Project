@@ -14,26 +14,18 @@
                         <th>Tgl Pinjam</th>
                         <th>Tgl Kembali</th>
                         <th>Biaya</th>
-                        <th>Driver</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                     @foreach ($riwayat as $value)
                     <tr style="width: 100%">
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $value->user_nama }}</td>
-                        <td>{{ $value->mobil_nama }}</td>
-                        <td>{{ $value->mobil_nomor }}</td>
+                        <td>{{ $value->nama_user }}</td>
+                        <td>{{ $value->nama_mobil }}</td>
+                        <td>{{ $value->plat_nomor }}</td>
                         <td>{{ date('d M Y', strtotime($value->tgl_pinjam)) }}</td>
                         <td>{{ date('d M Y', strtotime($value->tgl_kembali)) }}</td>
                         <td>@currency($value->harga)</td>
-                        <td>
-                            @if ($value->driver == "YES")
-                                <a class="badge btn-success btn-sm text-decoration-none disabled"><i class="fa fa-check" aria-hidden="true"></i></a>
-                            @elseif ($value->driver == "NO")
-                                <a class="badge btn-danger btn-sm text-decoration-none disabled"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            @endif
-                        </td>
                         <td>
                             @if ($value->status == 'Progress')
                                 <a class="badge btn-warning btn-sm text-decoration-none disabled">On Progress</a>

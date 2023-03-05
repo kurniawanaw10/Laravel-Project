@@ -7,6 +7,7 @@ use App\Models\Transaksi;
 use App\Models\Wisata;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class LaporanController extends Controller
@@ -18,10 +19,17 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporan = Transaksi::latest()->first();
+        $laporan = DB::table('transaksi')->latest();
+
+        if (request('search')) {
+            $laporan->where('nama_user', 'like', "%" . request('search') . "%")
+                ->orwhere('nama_mobil', 'like', "%" . request('search') . "%")
+                ->orWhere('plat_nomor', 'like', "%" . request('search') . "%");
+        }
+        // $laporan = DB::table('transaksi')->orderBy('created_at', 'desc');
         return view('admin.laporan.index', [
             "title" => "Laporan",
-            'reports' => $laporan
+            'reports' => $laporan->paginate(10)
         ]);
     }
 
@@ -32,14 +40,16 @@ class LaporanController extends Controller
 
     public function print(Request $request)
     {
-        // dd($request->tglawal);
-        $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
-        $laporan = Transaksi::whereBetween('created_at', [$request->tglawal, $request->tglakhir])->get();
+        $awal = $request->tglawal;
+        $akhir = $request->tglakhir;
+        // $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        $laporan = Transaksi::whereBetween('tgl_pinjam', [$request->tglawal, $request->tglakhir])->get();
         // dd($laporan);
 
         return view('admin.laporan.receipt-all', [
             'laporan' => $laporan,
-            'today' => $today
+            'awal' => $awal,
+            'akhir' => $akhir
         ]);
     }
 
@@ -55,12 +65,12 @@ class LaporanController extends Controller
 
     public function search(Request $request)
     {
-        $keyword = $request->search;
-        $reports = Transaksi::where('user_nama', 'like', "%" . $keyword . "%")
-            ->orwhere('mobil_nama', 'like', "%" . $keyword . "%")
-            ->orWhere('mobil_nomor', 'like', "%" . $keyword . "%")
-            ->get();
-        return view('admin.laporan.index', compact('reports'));
+        // $keyword = $request->search;
+        // $reports = Transaksi::where('user_nama', 'like', "%" . $keyword . "%")
+        //     ->orwhere('mobil_nama', 'like', "%" . $keyword . "%")
+        //     ->orWhere('mobil_nomor', 'like', "%" . $keyword . "%")
+        //     ->get();
+        // return view('admin.laporan.index', compact('reports'));
     }
 
     /**

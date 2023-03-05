@@ -19,11 +19,11 @@ class CreateDataMobil extends Migration
             $table->integer('tahun_mobil');
             $table->integer('seat_mobil')->nullable();
             $table->string('plat_nomor');
-            $table->string('transmisi')->nullable();
-            $table->string('bahan_bakar')->nullable();
+            // $table->string('transmisi')->nullable();
+            // $table->string('bahan_bakar')->nullable();
             $table->string('status')->nullable()->default('tersedia');
             $table->string('foto_mobil')->nullable();
-            $table->integer('harga')->unsigned()->nullable();
+            // $table->integer('harga')->unsigned()->nullable();
             $table->timestamps();
         });
     }

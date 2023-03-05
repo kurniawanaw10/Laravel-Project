@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrateWisataTable extends Migration
+class CreateCategoryHargasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CrateWisataTable extends Migration
      */
     public function up()
     {
-        Schema::create('artikel', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('judul');
-            $table->longText('lokasi');
-            $table->text('excerpt');
-            $table->text('deskripsi');
-            $table->string('foto')->nullable();
+        Schema::create('category_hargas', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('mobil_id');
+            $table->foreign('mobil_id')->references('id')->on('data_mobil');
+            $table->string('deskripsi');
+            $table->integer('harga');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CrateWisataTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('category_hargas');
     }
 }

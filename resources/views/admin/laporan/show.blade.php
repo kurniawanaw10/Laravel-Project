@@ -10,7 +10,11 @@
             </div>
             <div class="col-lg-7">
                 <div class="text-center mt-5">
-                    <img src="{{ asset('dist/img/foto-sampul.jpg') }}" class="mb-4" alt="" style="height: 140px; width: 120px;">
+                    @if ($laporan->user->foto_diri)
+                        <img src="{{ asset('storage/'. $laporan->user->foto_diri) }}" alt="" style="height: 200px; width: 150px;" class="img-thumbnail">
+                    @else
+                        <img src="{{ asset('dist/img/foto-sampul.jpg') }}" alt="" style="height: 200px; width: 150px;" class="img-thumbnail">
+                    @endif
                     <h2 class="text-bold mt-4">Data User</h2>
                 </div>
             </div>
@@ -27,6 +31,10 @@
                         <td>{{ $laporan->mobil_nomor }}</td>
                     </tr>
                     <tr>
+                        <th>Bahan Bakar</th>
+                        <td>{{ $laporan->mobil->bahan_bakar }}</td>
+                    </tr>
+                    <tr>
                         <th>Harga Sewa</th>
                         <td>@currency($laporan->mobil->harga)/Day</td>
                     </tr>
@@ -40,6 +48,10 @@
             </div>
             <div class="col-lg-7">
                 <table class="table table-bordered mt-4">
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ $laporan->user_nama }}</td>
+                    </tr>
                     <tr>
                         <th>Nama Lengkap</th>
                         <td>{{ $laporan->user->nama_lengkap }}</td>
@@ -62,7 +74,6 @@
         <div class="row">
             <table class="table table-responsive-lg mt-3 text-center">
                 <tr>
-                    <th>Nama Pengguna</th>
                     <th>Tgl Pinjam</th>
                     <th>Tgl Kembali</th>
                     <th>Lama Sewa</th>
@@ -73,7 +84,6 @@
                     <th>Bukti Tf</th>
                 </tr>
                 <tr>
-                    <td>{{ $laporan->user_nama }}</td>
                     <td>{{ date('d F Y', strtotime($laporan->tgl_pinjam)) }}</td>
                     <td>{{ date('d F Y', strtotime($laporan->tgl_kembali)) }}</td>
                     <td>{{ $laporan->hari }} Hari</td>
@@ -104,7 +114,8 @@
             </table>
             <div class="row">
                 <div class="col-12 ml-2">
-                    <h6 class="text-bold">* Rincian Biaya : </h6> <h6>( @currency($laporan->mobil->harga) @if ($laporan->driver == "YES") + Rp. 100.000 @endif) x {{ $laporan->hari }} = @currency($laporan->harga)</h6>
+                    <h6 class="text-bold">* Rincian Biaya : </h6>
+                    <h6>( @currency($laporan->mobil->harga) @if ($laporan->driver == "YES") + Rp. 100.000 @endif) x {{ $laporan->hari }} Hari = @currency($laporan->harga)</h6>
                 </div>
             </div>
         </div>

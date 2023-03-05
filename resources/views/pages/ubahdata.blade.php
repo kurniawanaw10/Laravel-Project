@@ -42,7 +42,7 @@
                     <div class="row mb-3">
                         <div class="col-6">
                             <label for="inputNomor" class="form-label">Nomor Handphone</label>
-                            <input type="text" class="form-control @error('nomor_hp') is-invalid @enderror" id="inputNomor" name="nomor_hp" value="{{ old('nomor_hp', $data->nomor_hp) }}">
+                            <input type="number" class="form-control @error('nomor_hp') is-invalid @enderror" id="inputNomor" minlength="11" name="nomor_hp" value="{{ old('nomor_hp', $data->nomor_hp) }}">
                             @error('nomor_hp')
                                 <div class="invalid-feedback">
                                     {{ $message }}

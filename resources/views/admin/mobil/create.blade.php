@@ -34,7 +34,7 @@
                         </div>
                     @enderror
                 </div>
-                <div class="mt-3">
+                {{-- <div class="mt-3">
                     <div class="form-group">
                         <label for="inputTransmisi">Transmisi</label>
                         <select name="transmisi" class="custom-select @error('transmisi') is-invalid @enderror" id="inputTransmisi" value="{{ old('transmisi') }}">
@@ -49,17 +49,17 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div>
-                <div class="mt-3">
+                </div> --}}
+                {{-- <div class="mt-3">
                     <label for="inputHarga" class="form-label">Harga Sewa</label>
-                    <input type="text" class="form-control @error('harga') is-invalid @enderror" id="inputHarga" name="harga" value="{{ old('harga') }}">
+                    <input type="number" class="form-control @error('harga') is-invalid @enderror" id="inputHarga" name="harga" value="{{ old('harga') }}">
                     @error('harga')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
-                </div>
-                <div class="mt-3">
+                </div> --}}
+                {{-- <div class="mt-3">
                     <label for="inputBahanbakar" class="form-label">Bahan Bakar</label>
                     <input type="text" class="form-control @error('bahan_bakar') is-invalid @enderror" id="inputBahanbakar" name="bahan_bakar" value="{{ old('bahan_bakar') }}">
                     @error('bahan_bakar')
@@ -67,7 +67,7 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="mt-3">
                     <label for="inputNomor" class="form-label">Plat Nomor</label>
                     <input type="text" class="form-control @error('plat_nomor') is-invalid @enderror" id="inputNomor" name="plat_nomor" value="{{ old('plat_nomor') }}">

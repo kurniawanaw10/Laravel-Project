@@ -3,9 +3,9 @@
 @section('content')
 @if (auth()->user()) 
 <div class="pt-5">
-    <h1 class="text-center text-black"><b>Rental Order</b></h1>
+    <h1 class="text-center text-black animate__animated animate__fadeInDown"><b>Rental Order</b></h1>
     <div class="d-flex justify-content-center">
-        <div class="card col-lg-8 p-4 mt-4">
+        <div class="card col-lg-8 p-4 mt-4 animate__animated animate__zoomIn">
             <form action="{{ route('sewa-mobil') }}" method="GET" enctype="multipart/form-data">
             @csrf
             <div class="row d-flex justify-content-center">
@@ -37,6 +37,7 @@
                         <option value="M-Banking">M-Banking</option>
                         <option value="Transfer">Transfer Bank</option>
                         <option value="Cash">Cash</option>
+                        <option value="Other">Other</option>
                     </select>
                     @error('pembayaran')
                         <div class="invalid-feedback">
@@ -50,6 +51,7 @@
                         <option value="KTP">Kartu Tanda Penduduk</option>
                         <option value="Kartu Keluarga">Kartu Keluarga</option>
                         <option value="Kartu BPJS">Kartu BPJS</option>
+                        <option value="Other">Other</option>
                     </select>
                     @error('jaminan')
                         <div class="invalid-feedback">
@@ -58,17 +60,25 @@
                     @enderror
                 </div>
             </div>
-            <div class="row d-flex justify-content-center mt-3">
-                <div class="col-lg-11">
+            {{-- <div class="row d-flex justify-content-center mt-3">
+                <div class="col">
                     <div class="form-group">
-                        <div class="form-check form-switch">
-                            <label class="form-check-label" for="driver">Menggunakan Jasa Driver</label>
-                            <input class="form-check-input" type="checkbox" role="switch" name="driver" id="driver">
-                        </div>
+                        <select id="category_id" name="category_id" class="form-select @error('category_id') is-invalid @enderror">
+                            <option selected>Pilih Layanan</option>
+                            @foreach ($category as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->deskripsi }}</option>
+                            @endforeach
+                            <option value="Other">Other</option>
+                        </select>
+                        @error('category_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         <small>*Tambah biaya Rp. 100.000/Day</small>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row d-flex justify-content-center mt-3">
                 <button type="submit" class="btn btn-dark mb-1" onclick="tglantara(event)">Pesan</button>  
                 <button type="reset" class="btn btn-outline-danger mb-2">Reset</button>
@@ -105,11 +115,6 @@
                     <h5 class="card-title text-white text-center">{{ $data->nama_mobil }}</h5>
                     <table class="table table-borderless text-white">
                             <tr>
-                                <th>Transmisi</th>
-                                <td> : </td>
-                                <td>{{ $data->transmisi }}</td>
-                            </tr>
-                            <tr>
                                 <th>Kapasitas</th>
                                 <td> : </td>
                                 <td>{{ $data->seat_mobil }} Orang</td>
@@ -118,11 +123,6 @@
                                 <th>Plat Nomor</th>
                                 <td> : </td>
                                 <td>{{ $data->plat_nomor }}</td>
-                            </tr>
-                            <tr>
-                                <th>Bahan Bakar</th>
-                                <td> : </td>
-                                <td>{{ $data->bahan_bakar }}</td>
                             </tr>
                             <tr>
                                 <th>Harga Sewa</th>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\DataMobil;
 use App\Models\User;
+use App\Models\Wisata;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

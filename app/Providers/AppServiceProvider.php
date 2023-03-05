@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         Gate::define('admin', function (User $user) {
             return $user->is_admin;
         });
@@ -34,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
             return "Rp. <?php echo number_format($expression,0,',','.'); ?>";
         });
 
+        Paginator::useBootstrap();
         // Gate::define('user', function (User $user) {
         //     return $user->nama_user === 'Adi Basuki';
         // });

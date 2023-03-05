@@ -6,7 +6,7 @@
     <a class="btn btn-outline-dark" href="/rental"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp;Kembali</a>
     <div class="row d-flex justify-content-center mt-4">
     @foreach ($mobil as $data)
-        <div class="col-sm-8 col-lg-3 mt-3">
+        <div class="col-sm-6 col-lg-3 mt-3">
             <div class="card" style="background-color: #354259">
                 <form action="{{ route('sewa-post', $data->id) }}" method="GET" enctype="multipart/form-data">
                     @csrf
@@ -15,7 +15,7 @@
                     <input type="hidden" name="jaminan" value="{{ $jaminan }}">
                     <input type="hidden" name="tgl_pinjam" value="{{ $tgl_pinjam }}">
                     <input type="hidden" name="tgl_kembali" value="{{ $tgl_kembali }}">
-                    <div style="max-height: 170px; overflow:hidden;">
+                    <div style="max-height: 200px; overflow:hidden;">
                         <img src="{{ asset('storage/'.$data->foto_mobil) }}" class="card-img-top img-fluid d-block" alt="...">
                     </div>
                     <div class="card-body">
@@ -27,14 +27,22 @@
                                 <td>{{ $data->plat_nomor }}</td>
                             </tr>
                             <tr>
-                                <th>Transmisi</th>
+                                <th>Pilih Layanan</th>
                                 <td> : </td>
-                                <td>{{ $data->transmisi }}</td>
-                            </tr>
-                            <tr>
-                                <th>Harga Sewa</th>
-                                <td> : </td>
-                                <td>@currency($data->harga)/Day</td>
+                                <td>
+                                    <select id="category_id" name="category_id" class="form-select @error('category_id') is-invalid @enderror">
+                                        @foreach ($category as $cat)
+                                        @if ($cat->mobil_id == $data->id)
+                                            <option value="{{ $cat->id }}">{{ $cat->deskripsi }}</option>
+                                        @endif
+                                        @endforeach
+                                    </select>
+                                    @error('category_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </td>
                             </tr>
                         </table>
                         <div class="d-flex justify-content-center">

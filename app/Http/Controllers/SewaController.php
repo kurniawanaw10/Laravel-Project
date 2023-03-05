@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataMobil;
 use App\Models\Transaksi;
 use Alert;
+use App\Models\Category_harga;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -47,7 +48,8 @@ class SewaController extends Controller
             "driver" => $request->driver,
             "pembayaran" => $request->pembayaran,
             "jaminan" => $request->jaminan,
-            "mobil" => DataMobil::whereNotIn('id', $mobil_id_terpakai)->get()
+            "mobil" => DataMobil::whereNotIn('id', $mobil_id_terpakai)->get(),
+            'category' => Category_harga::all()
             // "datas" => DataMobil::where([
             //     ['status', 'tersedia']
             // ])->get()
@@ -91,27 +93,33 @@ class SewaController extends Controller
 
     public function post(Request $request, DataMobil $mobil)
     {
+
         $tgl_pinjam = strtotime($request->tgl_pinjam);
         $tgl_kembali = strtotime($request->tgl_kembali);
         $hari = (($tgl_kembali - $tgl_pinjam) + 86400) / 86400;
+        // $id_layanan = $request->category_id;
+        $layanan = Category_harga::where('id', $request->category_id)->first();
+        $biaya = $layanan->harga * $hari;
+        // dd($layanan->harga);
 
-        if ($request->driver == "on") {
-            $biaya = ($mobil->harga * $hari) + (100000 * $hari);
-        } else {
-            $biaya = $mobil->harga * $hari;
-        }
 
-        // dd($biaya);
+        // if ($request->driver == "on") {
+        //     $biaya = ($mobil->harga * $hari) + (100000 * $hari);
+        // } else {
+        //     $biaya = $mobil->harga * $hari;
+        // }
+
         return view('rental.post', [
             "title"         => "Order Kendaraan",
             'tgl_pinjam'    => $request->tgl_pinjam,
             'tgl_kembali'   => $request->tgl_kembali,
-            'driver'        => $request->driver == 'on' ? 'on' : 'off',
             'pembayaran'    => $request->pembayaran,
             'jaminan'       => $request->jaminan,
+            'layanan'       => $layanan->deskripsi,
+            'rate'       => $layanan->harga,
             "hari"          => $hari,
-            "biaya"         => $biaya,
             'mobil'         => $mobil,
+            "biaya"         => $biaya
         ]);
     }
 
@@ -123,27 +131,26 @@ class SewaController extends Controller
      */
     public function store(Request $request, DataMobil $mobil)
     {
-        $request->validate([
-            'tgl_pinjam' => 'required',
-            'tgl_kembali' => 'required',
-            'driver' => 'required|in:on,off',
-            'jaminan' => 'required|in:KTP,Kartu Keluarga,Kartu BPJS',
-            'pembayaran' => 'required|in:M-Banking,Cash,Transfer'
-        ]);
+        // $request->validate([
+        //     'tgl_pinjam' => 'required',
+        //     'tgl_kembali' => 'required',
+        //     'driver' => 'required|in:on,off',
+        //     'jaminan' => 'required|in:KTP,Kartu Keluarga,Kartu BPJS',
+        //     'pembayaran' => 'required|in:M-Banking,Cash,Transfer'
+        // ]);
 
-        $str_tgl_kembali = strtotime($request->tgl_kembali);
-        $str_tgl_pinjam  = strtotime($request->tgl_pinjam);
+        // $str_tgl_kembali = strtotime($request->tgl_kembali);
+        // $str_tgl_pinjam  = strtotime($request->tgl_pinjam);
 
 
         // Hitung Biaya
-        $hari  = (($str_tgl_kembali - $str_tgl_pinjam) + 86400) / 86400;
-        $biaya = $request->driver == 'on' ? ($mobil->harga * $hari) + (100000 * $hari) : $mobil->harga * $hari;
-        $sopir = $request->driver;
-        if ($request->driver == 'on') {
-            $sopir = "YES";
-        } else {
-            $sopir = "NO";
-        }
+        // $hari  = (($str_tgl_kembali - $str_tgl_pinjam) + 86400) / 86400;
+        // $sopir = $request->driver;
+        // if ($request->driver == 'on') {
+        //     $sopir = "YES";
+        // } else {
+        //     $sopir = "NO";
+        // }
 
         // $checkTrans = Transaksi::where('mobil_id', $mobil->id)
         //     ->orWhereBetween('tgl_pinjam', [$request->tgl_pinjam, $request->tgl_kembali])
@@ -159,22 +166,22 @@ class SewaController extends Controller
         // } else {
         Transaksi::create([
             'mobil_id' => $mobil->id,
-            'mobil_nama' => $mobil->nama_mobil,
-            'mobil_nomor' => $mobil->plat_nomor,
             'user_id' => auth()->user()->id,
-            'user_nama' => auth()->user()->nama_user,
+            'nama_user' => auth()->user()->nama_user,
+            'nama_mobil' => $mobil->nama_mobil,
+            'plat_nomor' => $mobil->plat_nomor,
             'user_nomor' => auth()->user()->nomor_hp,
-            'user_nik' => auth()->user()->nik,
-            'driver' => $sopir,
+            'jaminan' => $request->jaminan,
+            'layanan' => $request->layanan,
+            'rate' => $request->rate,
             'tgl_pinjam' => $request->tgl_pinjam,
             'tgl_kembali' => $request->tgl_kembali,
-            'hari' => $hari,
-            'harga' => $biaya,
-            'jaminan' => $request->jaminan,
+            'harga' => $request->biaya,
+            'hari' => $request->hari,
             'pembayaran' => $request->pembayaran
         ]);
 
-        return redirect()->route('rental');
+        return redirect('/riwayat');
         // }
     }
 

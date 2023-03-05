@@ -6,7 +6,6 @@
         @csrf
         <input type="hidden" name="pembayaran" value="{{ $pembayaran }}">
         <input type="hidden" name="jaminan" value="{{ $jaminan }}">
-        <input type="hidden" name="driver" value="{{ $driver }}">
         <div class="card" style="min-height: 540px;">
             <div class="row g-0">
                 <div class="col-md-6 p-4">
@@ -14,11 +13,6 @@
                     <div class="card-body mt-3">
                         <h2 class="card-title mb-2">{{ $mobil->nama_mobil }}</h2>
                         <table class="table table-borderless">
-                            <tr>
-                                <th>Transmisi</th>
-                                <td> : </td>
-                                <td>{{ $mobil->transmisi }}</td>
-                            </tr>
                             <tr>
                                 <th>Kapasitas</th>
                                 <td> : </td>
@@ -29,16 +23,11 @@
                                 <td> : </td>
                                 <td>{{ $mobil->plat_nomor }}</td>
                             </tr>
-                            <tr>
-                                <th>Bahan Bakar</th>
-                                <td> : </td>
-                                <td>{{ $mobil->bahan_bakar }}</td>
-                            </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th>Harga Sewa</th>
                                 <td> : </td>
-                                <td>@currency($mobil->harga)/Day</td>
-                            </tr>
+                                <td>@currency($mobil->$catego->harga)/Day</td>
+                            </tr> --}}
                         </table>
                     </div>
                 </div>
@@ -87,18 +76,21 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="driver">Driver</label>
-                                @if ($driver == 'on')                                    
-                                    <input class="form-control" type="text" id="driver" value="Dengan Driver" disabled>
-                                @elseif ($driver == 'off')
-                                    <input class="form-control" type="text" id="driver" value="Tanpa Driver" disabled>
-                                @endif
-                                <input type="hidden" name="driver" id="driver" value="{{ $driver }}">
+                                <label for="layanan">Layanan</label>
+                                <input class="form-control" type="text" id="layanan" value="{{ $layanan }}" disabled>
+                                <input type="hidden" name="layanan" id="layanan" value="{{ $layanan }}">
                             </div>
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="rate">Biaya per Hari</label>
+                                <input class="form-control" type="text" id="rate" value="@currency($rate)" disabled>
+                                <input type="hidden" name="rate" id="rate" value="{{ $rate }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label for="biaya">Total Biaya</label>
                                 <input class="form-control" type="text" id="biaya" value="@currency($biaya)" disabled>
@@ -106,6 +98,8 @@
                             </div>
                         </div>
                     </div>
+                    <small>&middot; Biaya termasuk Driver & BBM</small> <br>
+                    <small>&middot; Biaya belum termasuk parkir & tol</small>
                     <div class="row d-flex justify-content-center">
                         <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#myModal">Pesan</button>
                         <input class="btn btn-danger mt-2" type="button" value="Batal" onclick="window.history.back()" />

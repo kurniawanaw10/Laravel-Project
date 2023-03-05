@@ -42,11 +42,15 @@ Route::get('/riwayat/receipt/{id}', [PagesController::class, 'cetak'])->name('ce
 // Route::get('/laporan/cetak-form', [LaporanController::class, 'cetakform'])->name('cetak-transaksi')->middleware('admin');
 Route::get('/laporan/cetak-laporan', [LaporanController::class, 'print'])->name('cetak-laporan')->middleware('admin');
 Route::get('/admin/laporan/{id}', [LaporanController::class, 'show'])->name('show-laporan')->middleware('admin');
-Route::get('/admin/laporan/{user_nama?}', [LaporanController::class, 'search'])->name('search')->middleware('admin');
+// Route::get('/admin/laporan/{user_nama?}', [LaporanController::class, 'search'])->name('search')->middleware('admin');
 Route::resource('/admin/laporan', LaporanController::class)->middleware('admin');
 
 //Function Mobil
+Route::get('/admin/mobil/{mobil}/editharga', [DataMobilController::class, 'ubahharga'])->name('edit-harga')->middleware('admin');
+Route::post('/admin/harga/{mobil}', [DataMobilController::class, 'updateharga'])->name('update-harga')->middleware('admin');
+Route::delete('/admin/harga/{mobil}', [DataMobilController::class, 'hapus'])->name('hapus-harga')->middleware('admin');
 Route::resource('/admin/mobil', DataMobilController::class)->middleware('admin');
+// Route::put('/admin/mobil/{mobil}', [DataMobilController::class, 'updateharga'])->name('update-harga')->middleware('admin');
 
 //Function User
 Route::resource('/admin/user', UserController::class)->middleware('admin');
@@ -58,6 +62,7 @@ Route::get('/admin/wisata', [WisataController::class, 'index'])->name('wisata-in
 Route::get('/admin/wisata/create', [WisataController::class, 'create'])->name('wisata-create')->middleware('admin');
 Route::post('/admin/wisata/store', [WisataController::class, 'store'])->name('wisata-store')->middleware('admin');
 Route::get('/admin/wisata/{wisata}/edit', [WisataController::class, 'edit'])->middleware('admin');
+Route::put('/admin/wisata/{wisata}', [WisataController::class, 'update'])->middleware('admin');
 // Route::resource('/admin/wisata', WisataController::class)->middleware('admin');
 
 // //Function Rental

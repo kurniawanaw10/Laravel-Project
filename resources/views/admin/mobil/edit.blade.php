@@ -10,7 +10,7 @@
                     @csrf
                     @method('PUT')
                     <div class="row mb-3">
-                        <div class="col-4">
+                        <div class="col-6">
                             <label for="inputNama" class="form-label">Nama Mobil</label>
                             <input type="text" class="form-control @error('nama_mobil') is-invalid @enderror" id="inputNama" name="nama_mobil" value="{{ $model->nama_mobil }}">
                             @error('nama_mobil')
@@ -19,7 +19,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <label for="inputTahun" class="form-label">Tahun</label>
                             <input type="text" class="form-control @error('tahun_mobil') is-invalid @enderror" id="inputTahun" name="tahun_mobil" value="{{ $model->tahun_mobil }}">
                             @error('tahun_mobil')
@@ -28,7 +28,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-4">
+                        {{-- <div class="col-4">
                             <div class="form-group">
                                 <label for="inputTransmisi">Transmisi</label>
                                 <select name="transmisi" id="transmisi" class="form-control @error('transmisi') is-invalid @enderror" id="inputTransmisi" value="{{ $model->transmisi }}">
@@ -43,10 +43,10 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row mb-3">
-                        <div class="col-4">
+                        <div class="col-6">
                             <label for="inputSeat" class="form-label">Kapasitas</label>
                             <input type="text" class="form-control @error('seat_mobil') is-invalid @enderror" id="inputSeat" name="seat_mobil" value="{{ $model->seat_mobil }}">
                             @error('seat_mobil')
@@ -55,7 +55,16 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
+                            <label for="inputNomor" class="form-label">Plat Nomor</label>
+                            <input type="text" class="form-control @error('plat_nomor') is-invalid @enderror" id="inputNomor" name="plat_nomor" value="{{ $model->plat_nomor }}">
+                            @error('plat_nomor')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        {{-- <div class="col-4">
                             <label for="inputHarga" class="form-label">Harga Sewa</label>
                             <input type="text" class="form-control @error('harga') is-invalid @enderror" id="inputHarga" name="harga" value="{{ $model->harga }}">
                             @error('harga')
@@ -72,18 +81,9 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row mb-3">
-                        <div class="col-6">
-                            <label for="inputNomor" class="form-label">Plat Nomor</label>
-                            <input type="text" class="form-control @error('plat_nomor') is-invalid @enderror" id="inputNomor" name="plat_nomor" value="{{ $model->plat_nomor }}">
-                            @error('plat_nomor')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
                         <div class="col-6">
                             <label for="foto_mobil">Foto Mobil</label>
                             <input type="file" name="foto_mobil" class="form-control-file @error('foto') is-invalid @enderror" id="foto_mobil">

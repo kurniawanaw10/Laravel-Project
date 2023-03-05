@@ -47,7 +47,7 @@
                         @enderror
                     </div>
                     <div class="form-floating">
-                        <input type="numeric" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" id="nomorhp" placeholder="Nomor Handphone" value="{{ old('nomor_hp') }}">
+                        <input type="number" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" id="nomorhp" placeholder="Nomor Handphone" value="{{ old('nomor_hp') }}">
                         <label for="nomorhp">No. Handphone</label>
                         @error('nomor_hp')
                             <div class="invalid-feedback">
