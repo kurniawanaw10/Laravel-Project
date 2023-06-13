@@ -56,7 +56,7 @@ class WisataController extends Controller
             'foto' => ['image', 'file', 'max:3072'],
         ]);
 
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->deskripsi), 150,);
+        // $validatedData['excerpt'] = Str::limit(strip_tags($request->deskripsi), 150,);
 
         if ($request->file('foto')) {
             $validatedData['foto'] = $request->file('foto')->store('foto-wisata');
@@ -110,7 +110,7 @@ class WisataController extends Controller
             'foto' => ['image', 'file', 'max:3072']
         ]);
 
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->deskripsi), 150,);
+        // $validatedData['excerpt'] = Str::limit(strip_tags($request->deskripsi), 150,);
 
         if ($request->file('foto')) {
             if ($request->oldFoto) {

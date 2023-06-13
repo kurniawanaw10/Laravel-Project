@@ -70,24 +70,25 @@
       <img class="bd-placeholder-img rounded-circle" src="{{ asset('storage/'.$wisatas[0]->foto) }}" width="140" height="140" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
 
       <h2 class="mt-3">{{ $wisatas[0]->judul }}</h2>
-      <p>{{ $wisatas[0]->excerpt }}</p>
+      <p>{{ Str::limit(strip_tags($wisatas[0]->deskripsi), 180) }}</p>
       <p><a class="btn btn-outline-dark" href="/wisata/{{ $wisatas[0]->id }}">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="bd-placeholder-img rounded-circle" src="{{ asset('storage/'.$wisatas[1]->foto) }}" width="140" height="140" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
 
       <h2 class="mt-3">{{ $wisatas[1]->judul }}</h2>
-      <p>{{ $wisatas[1]->excerpt }}</p>
+      <p>{{ Str::limit(strip_tags($wisatas[1]->deskripsi), 180) }}</p>
       <p><a class="btn btn-outline-dark" href="/wisata/{{ $wisatas[1]->id }}">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <img class="bd-placeholder-img rounded-circle" src="{{ asset('storage/'.$wisatas[2]->foto) }}" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
 
       <h2 class="mt-3">{{ $wisatas[2]->judul }}</h2>
-      <p>{{ $wisatas[2]->excerpt }}</p>
+      <p>{{ Str::limit(strip_tags($wisatas[2]->deskripsi), 180) }}</p>
       <p><a class="btn btn-outline-dark" href="/wisata/{{ $wisatas[2]->id }}">View details &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
-  </div><!-- /.row -->
+  </div>
+  <!-- /.row -->
 
 
   <!-- START THE FEATURETTES -->

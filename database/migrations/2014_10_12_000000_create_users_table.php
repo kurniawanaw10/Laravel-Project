@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('nama_user');
             $table->text('alamat');
             $table->string('nomor_hp', 14);
-            $table->string('nik', 16)->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('foto_diri')->nullable();

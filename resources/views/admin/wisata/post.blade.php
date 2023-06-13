@@ -1,5 +1,6 @@
 @extends('layouts/main')
 
+
 @section('content')
 <style>
     .text-justify {
@@ -17,7 +18,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title text-black fs-4">{{ $data->judul }}</h5>
-                    <p class="card-text text-justify">{{ $data->excerpt }}</p>
+                    <p class="card-text text-justify">{{ Str::limit(strip_tags($data->deskripsi), 180) }}</p>
                     <a href="/wisata/{{ $data->id }}" class="btn btn-outline-dark">Detail</a>
                 </div>
             </div>

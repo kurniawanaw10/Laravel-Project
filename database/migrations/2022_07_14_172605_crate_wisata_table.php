@@ -17,7 +17,10 @@ class CrateWisataTable extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->text('deskripsi');
+            $table->text('lokasi');
+            $table->string('foto')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -17,7 +17,7 @@
                         <th>Tgl Pinjam</th>
                         <th>Tgl Kembali</th>
                         {{-- <th>Driver</th> --}}
-                        {{-- <th>Biaya</th> --}}
+                        <th>Biaya</th>
                         <th>Status</th>
                     </tr>
                     @foreach ($reports as $value)
@@ -35,7 +35,7 @@
                                 <a class="badge btn-danger btn-sm text-decoration-none disabled"><i class="fa fa-times" aria-hidden="true"></i></a>
                             @endif
                         </td> --}}
-                        {{-- <td>@currency($value->harga)</td> --}}
+                        <td>@currency($value->harga)</td>
                         <td>
                             @if ($value->status == 'Progress')
                                 <a class="badge btn-warning btn-sm text-decoration-none disabled">On Progress</a>
@@ -71,8 +71,7 @@
                         <th>Nama Unit</th>
                         <th>Plat Nomor</th>
                         <th>Tahun</th>
-                        <th>Transmisi</th>
-                        <th>Bahan Bakar</th>
+                        <th>Status</th>
                         <th>Harga</th>
                         <th>Foto</th>
                     </tr>
@@ -82,8 +81,13 @@
                         <td>{{ $value->nama_mobil }}</td>
                         <td>{{ $value->plat_nomor }}</td>
                         <td>{{ $value->tahun_mobil }}</td>
-                        <td>{{ $value->transmisi }}</td>
-                        <td>{{ $value->bahan_bakar }}</td>
+                        <td>
+                            @if ($value->status == 'terpakai')
+                                <a class="badge btn-warning btn-sm text-decoration-none disabled">Terpakai</a>
+                            @else
+                                <a class="badge btn-success btn-sm text-decoration-none disabled">Tersedia</a>
+                            @endif
+                        </td>
                         <td>@currency($value->harga)</td>
                         <td>
                             <div style="max-width: 100px; overflow:hidden;">
@@ -117,7 +121,7 @@
                     <tr style="width: 100%">
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $value->judul }}</td>
-                        <td style="width:60%">{{ strip_tags($value->excerpt) }}</td>
+                        <td style="width:60%">{{ Str::limit(strip_tags($value->deskripsi), 180) }}</td>
                         <td>
                             <div style="max-width: 100px; overflow:hidden;">
                                 <img src="{{ asset('storage/'.$value->foto) }}" alt="" class="img-fluid">

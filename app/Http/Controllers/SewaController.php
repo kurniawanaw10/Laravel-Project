@@ -164,7 +164,6 @@ class SewaController extends Controller
             'user_id' => auth()->user()->id,
             'user_nama' => auth()->user()->nama_user,
             'user_nomor' => auth()->user()->nomor_hp,
-            'user_nik' => auth()->user()->nik,
             'driver' => $sopir,
             'tgl_pinjam' => $request->tgl_pinjam,
             'tgl_kembali' => $request->tgl_kembali,
